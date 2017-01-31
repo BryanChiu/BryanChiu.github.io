@@ -6,13 +6,17 @@ Tile swapTile;
 int tempTile;
 color[] colourLib = new color[]{color(50, 200, 200), color(230, 230, 0), color(150, 0, 150), color(0, 0, 250), 
   color(250, 130, 0), color(250, 0, 0), color(50, 250, 50)};
-int score;
+int score=0;
 boolean gameOver;
 boolean showSwap;
 boolean allowSwap;
 
 void setup() {
   size(550, 700);
+  gameOver=true;
+}
+
+void realSetup() {
   dropClock = 30;
   score = 0;
   gameOver=false;
@@ -27,8 +31,7 @@ void setup() {
   allowSwap=true;
 }
 
-void draw() {
-  background(200);
+void drawBoard() {
   for (int i=0; i<20; i++) {
     for (int j=0; j<10; j++) {
       if (board.get(i)[j]!=7) {
@@ -38,6 +41,19 @@ void draw() {
     }
   }
 
+  if (dropClock-- == 0) {
+    tile.drop();
+    if (tile.goodDrop==false) {
+      tile = nextTile;
+      nextTile = new Tile();
+      allowSwap=true;
+    }
+    clearRow();
+    dropClock = 30;
+  }
+}
+
+void drawTiles() {
   fill(tile.colour); // current tile
   for (int[] tyl : tile.tiles) {
     rect(50+(tyl[0]*30), 620-(tyl[1]*30), 30, 30);
@@ -54,11 +70,14 @@ void draw() {
       rect(300+(tyl[0]*30), 700-(tyl[1]*30), 30, 30);
     }
   }
+}
 
-  noFill();
-  stroke(0);
-  rect(375, 75, 150, 150);
-  rect(375, 275, 150, 150);
+void draw() {
+  background(200);
+  if (!gameOver) {
+    drawTiles();
+    drawBoard();
+  }
 
   fill(0);
   textAlign(CENTER, CENTER);
@@ -68,6 +87,10 @@ void draw() {
   text("Score", 450, 600);
   textSize(60);
   text(score, 450, 540);
+  noFill();
+  stroke(0);
+  rect(375, 75, 150, 150);
+  rect(375, 275, 150, 150);
 
   stroke(150);
   for (int i=50; i<351; i+=30) { //grid
@@ -76,28 +99,19 @@ void draw() {
     line(50, i+300, 350, i+300);
   }
 
-  if (dropClock-- == 0) {
-    tile.drop();
-    if (tile.goodDrop==false) {
-      tile = nextTile;
-      nextTile = new Tile();
-      allowSwap=true;
-    }
-    clearRow();
-    dropClock = 30;
-  }
-
   noStroke();
   fill(200);
   rect(0, 0, width, 50);
 
   if (gameOver) {
-    textSize(96);
+    fill(0, 100);
+    rect(25, 200, 350, 150);
+    textSize(44);
     fill(0);
-    text("GAME", 200, 225);
-    text("OVER", 200, 325);
-    if (mousePressed==true) {
-      setup();
+    text("Press SPACE to", 200, 225);
+    text("start new game", 200, 300);
+    if (keyPressed==true && key==' ') {
+      realSetup();
     }
   }
 }
