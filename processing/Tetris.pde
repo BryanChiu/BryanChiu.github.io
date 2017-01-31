@@ -38,18 +38,18 @@ void draw() {
     }
   }
 
-  fill(tile.stapler); // current tile
+  fill(tile.colour); // current tile
   for (int[] tile : tile.tiles) {
     rect(50+(tile[0]*30), 620-(tile[1]*30), 30, 30);
   }
 
-  fill(nextTile.stapler); // next tile
+  fill(nextTile.colour); // next tile
   for (int[] tile : nextTile.tiles) {
     rect(300+(tile[0]*30), 900-(tile[1]*30), 30, 30);
   }
 
   if (showSwap) {
-    fill(swapTile.stapler); // swapped tile
+    fill(swapTile.colour); // swapped tile
     for (int[] tile : swapTile.tiles) {
       rect(300+(tile[0]*30), 700-(tile[1]*30), 30, 30);
     }
@@ -132,7 +132,7 @@ class Tile {
   boolean goodDrop=true;
   int rotation=0;
   int stickRotate=0;
-  color stapler;
+  color colour;
 
   Tile() {
     pickShape();
@@ -188,7 +188,7 @@ class Tile {
       tiles[3] = new int[]{5, 19};
       break;
     }
-    stapler = colourLib[variant];
+    colour = colourLib[variant];
   }
 
   void drop() {
