@@ -119,8 +119,7 @@ void clearRow() {
     }
   }
   if (rowsInARow!=0) {
-    score+=(rowsInARow*2-1+(rowsInARow/2/2))*10;
-    println(score);
+    score+=((rowsInARow*2)-1+((rowsInARow/2)/2))*10;
   }
 }
 
