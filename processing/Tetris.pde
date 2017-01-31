@@ -39,19 +39,19 @@ void draw() {
   }
 
   fill(tile.colour); // current tile
-  for (int[] tile : tile.tiles) {
-    rect(50+(tile[0]*30), 620-(tile[1]*30), 30, 30);
+  for (int[] tyl : tile.tiles) {
+    rect(50+(tyl[0]*30), 620-(tyl[1]*30), 30, 30);
   }
 
   fill(nextTile.colour); // next tile
-  for (int[] tile : nextTile.tiles) {
-    rect(300+(tile[0]*30), 900-(tile[1]*30), 30, 30);
+  for (int[] tyl : nextTile.tiles) {
+    rect(300+(tyl[0]*30), 900-(tyl[1]*30), 30, 30);
   }
 
   if (showSwap) {
     fill(swapTile.colour); // swapped tile
-    for (int[] tile : swapTile.tiles) {
-      rect(300+(tile[0]*30), 700-(tile[1]*30), 30, 30);
+    for (int[] tyl : swapTile.tiles) {
+      rect(300+(tyl[0]*30), 700-(tyl[1]*30), 30, 30);
     }
   }
   
@@ -193,19 +193,19 @@ class Tile {
 
   void drop() {
     goodDrop = true;
-    for (int[] tile : tiles) {
-      if (tile[1]==0 || board.get(tile[1]-1)[tile[0]]!=7) {
+    for (int[] tyl : tiles) {
+      if (tyl[1]==0 || board.get(tyl[1]-1)[tyl[0]]!=7) {
         goodDrop = false;
       }
     }
-    for (int[] tile : tiles) {
+    for (int[] tyl : tiles) {
       if (goodDrop) {
-        tile[1]--;
+        tyl[1]--;
       } else {
-        if (tile[1]==19) {
+        if (tyl[1]==19) {
           gameOver=true;
         } else {
-          board.get(tile[1])[tile[0]] = variant;
+          board.get(tyl[1])[tyl[0]] = variant;
         }
       }
     }
@@ -268,58 +268,58 @@ class Tile {
     case 4:
     case 5:
     case 6:  
-      for (int[] tile : tiles) {
-        if (tiles[2][1]-tile[1]==-1) { //top row
-          if (tiles[2][0]-tile[0]==1) { //topleft
-            tile[0]+=2;
-          } else if (tiles[2][0]-tile[0]==0) { //topmid
-            tile[0]++;
-            tile[1]--;
-          } else if (tiles[2][0]-tile[0]==-1) { //topright
-            tile[1]+=-2;
+      for (int[] tyl : tiles) {
+        if (tiles[2][1]-tyl[1]==-1) { //top row
+          if (tiles[2][0]-tyl[0]==1) { //topleft
+            tyl[0]+=2;
+          } else if (tiles[2][0]-tyl[0]==0) { //topmid
+            tyl[0]++;
+            tyl[1]--;
+          } else if (tiles[2][0]-tyl[0]==-1) { //topright
+            tyl[1]+=-2;
           }
-        } else if (tiles[2][1]-tile[1]==1) { //bottom row
-          if (tiles[2][0]-tile[0]==1) { //botleft
-            tile[1]+=2;
-          } else if (tiles[2][0]-tile[0]==0) { //botmid
-            tile[0]--;
-            tile[1]++;
-          } else if (tiles[2][0]-tile[0]==-1) { //botright
-            tile[0]+=-2;
+        } else if (tiles[2][1]-tyl[1]==1) { //bottom row
+          if (tiles[2][0]-tyl[0]==1) { //botleft
+            tyl[1]+=2;
+          } else if (tiles[2][0]-tyl[0]==0) { //botmid
+            tyl[0]--;
+            tyl[1]++;
+          } else if (tiles[2][0]-tyl[0]==-1) { //botright
+            tyl[0]+=-2;
           }
-        } else if (tiles[2][0]-tile[0]==1) { //midleft
-          tile[0]++;
-          tile[1]++;
-        } else if (tiles[2][0]-tile[0]==-1) { //midright
-          tile[0]--;
-          tile[1]--;
+        } else if (tiles[2][0]-tyl[0]==1) { //midleft
+          tyl[0]++;
+          tyl[1]++;
+        } else if (tiles[2][0]-tyl[0]==-1) { //midright
+          tyl[0]--;
+          tyl[1]--;
         }
       }
     }
     int xcorrection=0;
-    for (int[] tile : tiles) {
-      if (tile[0]<0) {
-        xcorrection-=tile[0];
-      } else if (tile[0]>9) {
-        xcorrection = 9-tile[0];
+    for (int[] tyl : tiles) {
+      if (tyl[0]<0) {
+        xcorrection-=tyl[0];
+      } else if (tyl[0]>9) {
+        xcorrection = 9-tyl[0];
       }
     }
     if (xcorrection!=0) {
-      for (int[] tile : tiles) {
-        tile[0]+=xcorrection;
+      for (int[] tyl : tiles) {
+        tyl[0]+=xcorrection;
       }
     }
     boolean ycorrection=true;
     while (ycorrection) {
       ycorrection=false;
-      for (int[] tile : tiles) {
-        if (tile[1]<0 || board.get(tile[1])[tile[0]]==1) {
+      for (int[] tyl : tiles) {
+        if (tyl[1]<0 || board.get(tyl[1])[tyl[0]]==1) {
           ycorrection=true;
         }
       }
       if (ycorrection) {
-        for (int[] tile : tiles) {
-          tile[1]++;
+        for (int[] tyl : tiles) {
+          tyl[1]++;
         }
       }
     }
@@ -329,26 +329,26 @@ class Tile {
 void keyPressed() {
   boolean goodTranslate=true;
   if (keyCode==LEFT) {
-    for (int[] tile : tile.tiles) {
-      if (tile[0]==0 || board.get(tile[1])[tile[0]-1]!=7) {
+    for (int[] tyl : tile.tiles) {
+      if (tyl[0]==0 || board.get(tyl[1])[tyl[0]-1]!=7) {
         goodTranslate=false;
       }
     }
     if (goodTranslate) {
-      for (int[] tile : tile.tiles) {
-        tile[0]--;
+      for (int[] tyl : tile.tiles) {
+        tyl[0]--;
       }
     }
   }
   if (keyCode==RIGHT) {
-    for (int[] tile : tile.tiles) {
-      if (tile[0]==9 || board.get(tile[1])[tile[0]+1]!=7) {
+    for (int[] tyl : tile.tiles) {
+      if (tyl[0]==9 || board.get(tyl[1])[tyl[0]+1]!=7) {
         goodTranslate=false;
       }
     }
     if (goodTranslate) {
-      for (int[] tile : tile.tiles) {
-        tile[0]++;
+      for (int[] tyl : tile.tiles) {
+        tyl[0]++;
       }
     }
   }
