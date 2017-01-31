@@ -342,14 +342,11 @@ class Tile {
       }
       if (xcorrectionB == true) {
         if (i==5) {
-          tiles[0][0] = backup[0][0];
-          tiles[1][0] = backup[1][0];
-          tiles[2][0] = backup[2][0];
-          tiles[3][0] = backup[3][0];
-          tiles[0][1] = backup[0][1];
-          tiles[1][1] = backup[1][1];
-          tiles[2][1] = backup[2][1];
-          tiles[3][1] = backup[3][1];
+          tiles = backup;
+          stickRotate--;
+          if (stickRotate==-1) {
+            stickRotate=3;
+          }
           return;
         }
         for (int[] tyl : tiles) {
