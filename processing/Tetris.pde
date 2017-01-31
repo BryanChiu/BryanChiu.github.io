@@ -22,6 +22,7 @@ void setup() {
   }
   tile = new Tile();
   nextTile = new Tile();
+  swapTile = new Tile();
   showSwap=false;
   allowSwap=true;
 }
