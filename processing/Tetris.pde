@@ -54,7 +54,7 @@ void draw() {
       rect(300+(tyl[0]*30), 700-(tyl[1]*30), 30, 30);
     }
   }
-  
+
   noFill();
   stroke(0);
   rect(375, 75, 150, 150);
@@ -119,7 +119,7 @@ void clearRow() {
     }
   }
   if (rowsInARow!=0) {
-    score+=((rowsInARow*2)-1+int(int(rowsInARow/2)/2))*10;
+    score+=(rowsInARow*2-1+int(int(rowsInARow/2)/2))*10;
   }
 }
 
@@ -211,6 +211,15 @@ class Tile {
   }
 
   void rotation() {
+    int[][] backup = new int[4][2];
+    backup[0][0] = tiles[0][0];
+    backup[1][0] = tiles[1][0];
+    backup[2][0] = tiles[2][0];
+    backup[3][0] = tiles[3][0];
+    backup[0][1] = tiles[0][1];
+    backup[1][1] = tiles[1][1];
+    backup[2][1] = tiles[2][1];
+    backup[3][1] = tiles[3][1];
     switch (variant) {
     case 0:
       switch (stickRotate) {
@@ -308,11 +317,10 @@ class Tile {
         tyl[0]+=xcorrection;
       }
     }
-    boolean ycorrection=true;
-    while (ycorrection) {
-      ycorrection=false;
+    for (int i=0; i<2; i++) {
+      boolean ycorrection=false;
       for (int[] tyl : tiles) {
-        if (tyl[1]<0 || board.get(tyl[1])[tyl[0]]==1) {
+        if (tyl[1]<0 || board.get(tyl[1])[tyl[0]]!=7) {
           ycorrection=true;
         }
       }
@@ -320,6 +328,35 @@ class Tile {
         for (int[] tyl : tiles) {
           tyl[1]++;
         }
+      }
+      if (variant!=0) {
+        break;
+      }
+    }
+    for (int i=1; i<6; i++) {
+      boolean xcorrectionB = false;
+      for (int[] tyl : tiles) {
+        if (tyl[0]<0 || tyl[0]>9 || board.get(tyl[1])[tyl[0]]!=7) {
+          xcorrectionB = true;
+        }
+      }
+      if (xcorrectionB == true) {
+        if (i==5) {
+          tiles[0][0] = backup[0][0];
+          tiles[1][0] = backup[1][0];
+          tiles[2][0] = backup[2][0];
+          tiles[3][0] = backup[3][0];
+          tiles[0][1] = backup[0][1];
+          tiles[1][1] = backup[1][1];
+          tiles[2][1] = backup[2][1];
+          tiles[3][1] = backup[3][1];
+          return;
+        }
+        for (int[] tyl : tiles) {
+          tyl[0]+=pow(-1, i)*i;
+        }
+      } else {
+        return;
       }
     }
   }
