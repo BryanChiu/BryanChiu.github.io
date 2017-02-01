@@ -67,7 +67,7 @@ header {
 	text-align:center;
 	background:#18BC9C;
 	background-size: cover;
-	background-image: url:("../img/mainBackgroundImg.png");
+	background-image: url("../img/mainBackgroundImg.png");
 }
 header .container {
 	padding-top:100px;
