@@ -98,7 +98,7 @@ header .intro-text .skills {
 	
 header .mainBackImg {
 	background-size: cover;
-	background-image: url:("mainBackgroundImg.png");
+	background-image: url:("../img/mainBackgroundImg.png");
 
 }
 .navbar-custom {
