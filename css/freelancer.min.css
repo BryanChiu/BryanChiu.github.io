@@ -68,6 +68,7 @@ header {
 	background:#18BC9C;
 	background-size: cover;
 	background-image: url("../img/mainBackgroundImg.png");
+	background-blend-mode: lighten;
 }
 header .container {
 	padding-top:100px;
