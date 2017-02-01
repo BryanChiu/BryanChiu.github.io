@@ -65,7 +65,9 @@ hr.star-primary:after {
 }
 header {
 	text-align:center;
-	background:#18BC9C
+	background:#18BC9C;
+	background-size: cover;
+	background-image: url:("../img/mainBackgroundImg.png");
 }
 header .container {
 	padding-top:100px;
@@ -96,11 +98,6 @@ header .intro-text .skills {
 	font-size:1.75em
 }
 	
-header .mainBackImg {
-	background-size: cover;
-	background-image: url:("../img/mainBackgroundImg.png");
-
-}
 .navbar-custom {
 	background:#2C3E50;
 	font-weight:700;
