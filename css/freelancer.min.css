@@ -95,6 +95,10 @@ header .intro-text .name {
 header .intro-text .skills {
 	font-size:1.75em
 }
+	
+header .mainBackImg {
+	background-size: cover;
+	background-image: url:("mainBackgroundImg.png");
 
 }
 .navbar-custom {
