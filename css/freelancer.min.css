@@ -23,9 +23,13 @@ h1,h2,h3,h4,h5,h6 {
 	font-weight:700
 }
 hr .pfolioelem {
+	padding:0;
 	border:none;
 	border-top:solid 2px;
 	max-width:500px;
+	border-color:#000;
+	color:#000;
+	margin:25px auto 30px;	
 }
 hr.star-light,hr.star-primary {
 	padding:0;
