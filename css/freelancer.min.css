@@ -22,7 +22,7 @@ h1,h2,h3,h4,h5,h6 {
 	text-transform:uppercase;
 	font-weight:700
 }
-hr .pfolioelem {
+hr.pfolioelem {
 	padding:0;
 	border:none;
 	border-top:solid 2px;
