@@ -1,11 +1,13 @@
+import java.util.Arrays;
 ArrayList<Integer[]> board;
+ArrayList<Integer>[] randomCounter;
 int dropClock;
 Tile tile;
 Tile nextTile;
 Tile swapTile;
 int tempTile;
-color[] colourLib = new color[]{color(50, 200, 200), color(230, 230, 0), color(150, 0, 150), color(0, 0, 250), 
-  color(250, 130, 0), color(250, 0, 0), color(50, 250, 50)};
+color[] colourLib = new color[]{color(50, 200, 200), color(230, 230, 0), color(150, 0, 150), 
+  color(0, 0, 250), color(250, 130, 0), color(250, 0, 0), color(50, 250, 50)};
 int score=0;
 boolean gameOver;
 boolean showSwap;
@@ -24,6 +26,10 @@ void realSetup() {
   for (int i=0; i<21; i++) {
     board.add(new Integer[]{7, 7, 7, 7, 7, 7, 7, 7, 7, 7});
   }
+  randomCounter = (ArrayList<Integer>[]) new ArrayList[7];
+  for (int i=0; i<7; i++) {
+    randomCounter[i] = new ArrayList<Integer>(Arrays.asList(i, i, i, i, i, i, i, i, i, i, i, i, i, i, i, i, i, i));
+  }
   tile = new Tile();
   nextTile = new Tile();
   swapTile = new Tile();
@@ -31,52 +37,12 @@ void realSetup() {
   allowSwap=true;
 }
 
-void drawBoard() {
-  for (int i=0; i<20; i++) {
-    for (int j=0; j<10; j++) {
-      if (board.get(i)[j]!=7) {
-        fill(colourLib[board.get(i)[j]]);
-        rect(50+(j*30), 620-(i*30), 30, 30);
-      }
-    }
-  }
-
-  if (dropClock-- == 0) {
-    tile.drop();
-    if (tile.goodDrop==false) {
-      tile = nextTile;
-      nextTile = new Tile();
-      allowSwap=true;
-    }
-    clearRow();
-    dropClock = 30;
-  }
-}
-
-void drawTiles() {
-  fill(tile.colour); // current tile
-  for (int[] tyl : tile.tiles) {
-    rect(50+(tyl[0]*30), 620-(tyl[1]*30), 30, 30);
-  }
-
-  fill(nextTile.colour); // next tile
-  for (int[] tyl : nextTile.tiles) {
-    rect(300+(tyl[0]*30), 900-(tyl[1]*30), 30, 30);
-  }
-
-  if (showSwap) {
-    fill(swapTile.colour); // swapped tile
-    for (int[] tyl : swapTile.tiles) {
-      rect(300+(tyl[0]*30), 700-(tyl[1]*30), 30, 30);
-    }
-  }
-}
-
 void draw() {
   background(200);
   if (!gameOver) {
     drawTiles();
     drawBoard();
+    dropLine();
   }
 
   fill(0);
@@ -116,6 +82,49 @@ void draw() {
   }
 }
 
+void drawBoard() {
+  for (int i=0; i<20; i++) {
+    for (int j=0; j<10; j++) {
+      if (board.get(i)[j]!=7) {
+        fill(colourLib[board.get(i)[j]]);
+        rect(50+(j*30), 620-(i*30), 30, 30);
+      }
+    }
+  }
+}
+
+void drawTiles() {
+  fill(tile.colour); // current tile
+  for (int[] tyl : tile.tiles) {
+    rect(50+(tyl[0]*30), 620-(tyl[1]*30), 30, 30);
+  }
+
+  fill(nextTile.colour); // next tile
+  for (int[] tyl : nextTile.tiles) {
+    rect(300+(tyl[0]*30), 900-(tyl[1]*30), 30, 30);
+  }
+
+  if (showSwap) {
+    fill(swapTile.colour); // swapped tile
+    for (int[] tyl : swapTile.tiles) {
+      rect(300+(tyl[0]*30), 700-(tyl[1]*30), 30, 30);
+    }
+  }
+}
+
+void dropLine() {
+  if (dropClock-- == 0) {
+    tile.drop();
+    if (tile.goodDrop==false) {
+      tile = nextTile;
+      nextTile = new Tile();
+      allowSwap=true;
+    }
+    clearRow();
+    dropClock = 30;
+  }
+}
+
 void clearRow() {
   int rowsInARow=0;
   for (int i=0; i<20; i++) {
@@ -137,17 +146,45 @@ void clearRow() {
   }
 }
 
+int chooseRandom() {
+  int returnVar=-1;
+  while (true) {
+    int rando = int(random(126));
+    for (int i=0; i<7; i++) {
+      if (rando - randomCounter[i].size()<0 && randomCounter[i].size()>5 && rando>0) {
+        returnVar = randomCounter[i].get(rando);
+        for (int j=0; j<6; j++) {
+          randomCounter[i].remove(0);
+        }
+        for (int j=0; j<7; j++) {
+          if (j!=i) {
+            randomCounter[j].add(j);
+          }
+        }
+        break;
+      } else {
+        rando-=18;
+      }
+    }
+    if (returnVar!=-1) {
+      break;
+    }
+  }
+  return returnVar;
+}
+
 class Tile {
   // 0=line, 1=sqr, 2=T, 3=L, 4=L, 5=S, 6=Z
   // rotation is clockwise
   int[][] tiles = new int[4][];
-  int variant = int(random(7));
+  int variant;
   boolean goodDrop=true;
   int rotation=0;
   int stickRotate=0;
   color colour;
 
   Tile() {
+    variant = chooseRandom();
     pickShape();
   }
 
@@ -215,7 +252,7 @@ class Tile {
       if (goodDrop) {
         tyl[1]--;
       } else {
-        if (tyl[1]==19) {
+        if (tyl[1]==20) {
           gameOver=true;
         } else {
           board.get(tyl[1])[tyl[0]] = variant;
