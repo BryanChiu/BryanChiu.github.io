@@ -1,4 +1,4 @@
-import Arrays;
+import Arrays.java;
 ArrayList<Integer[]> board;
 ArrayList<Integer>[] randomCounter;
 int dropClock;
