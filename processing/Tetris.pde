@@ -28,7 +28,10 @@ void realSetup() {
   }
   randomCounter = (ArrayList<Integer>[]) new ArrayList[7];
   for (int i=0; i<7; i++) {
-    randomCounter[i] = new ArrayList<Integer>(Arrays.asList(i, i, i, i, i, i, i, i, i, i, i, i, i, i, i, i, i, i));
+    randomCounter[i] = new ArrayList<Integer>();
+    for (int j=0; j<18; j++) {
+      randomCounter[i].add(i);
+    }
   }
   tile = new Tile();
   nextTile = new Tile();
