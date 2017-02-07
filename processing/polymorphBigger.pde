@@ -75,7 +75,3 @@ class Dot {
     }
   }
 }
-
-void mouseClicked() {
-  dotArray.add(new Dot(mouseX, mouseY));
-}
