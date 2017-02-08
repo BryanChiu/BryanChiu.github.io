@@ -102,16 +102,16 @@ header .intro-text .skills {
 }
 @media (min-width:768px) {
 	header .container {
-	padding-top:200px;
-	padding-bottom:100px
-}
-header .intro-text .name {
-	font-size:4.75em
-}
-header .intro-text .skills {
-	font-size:1.75em
-}
-	
+		padding-top:200px;
+		padding-bottom:100px
+	}
+	header .intro-text .name {
+		font-size:4.75em
+	}
+	header .intro-text .skills {
+		font-size:1.75em
+	}
+}	
 .navbar-custom {
 	background:#2C3E50;
 	font-weight:700;
@@ -147,24 +147,23 @@ header .intro-text .skills {
 }
 @media (min-width:768px) {
 	.navbar-custom {
-	padding:25px 0;
-	-webkit-transition:padding .3s;
-	-moz-transition:padding .3s;
-	transition:padding .3s
-}
-.navbar-custom .navbar-brand {
-	font-size:2em;
-	-webkit-transition:all .3s;
-	-moz-transition:all .3s;
-	transition:all .3s
-}
-.navbar-custom.affix {
-	padding:10px 0
-}
-.navbar-custom.affix .navbar-brand {
-	font-size:1.5em
-}
-
+		padding:25px 0;
+		-webkit-transition:padding .3s;
+		-moz-transition:padding .3s;
+		transition:padding .3s
+	}
+	.navbar-custom .navbar-brand {
+		font-size:2em;
+		-webkit-transition:all .3s;
+		-moz-transition:all .3s;
+		transition:all .3s
+	}
+	.navbar-custom.affix {
+		padding:10px 0
+	}
+	.navbar-custom.affix .navbar-brand {
+		font-size:1.5em
+	}
 }
 section {
 	padding:100px 0
@@ -179,12 +178,11 @@ section.success {
 }
 @media (max-width:767px) {
 	section {
-	padding:75px 0
-}
-section.first {
-	padding-top:75px
-}
-
+		padding:75px 0
+	}
+	section.first {
+		padding-top:75px
+	}
 }
 #portfolio .portfolio-item {
 	margin:0 0 15px;
@@ -233,9 +231,8 @@ section.first {
 }
 @media (min-width:767px) {
 	#portfolio .portfolio-item {
-	margin:0 0 30px
-}
-
+		margin:0 0 30px
+	}
 }
 .floating-label-form-group {
 	position:relative;
