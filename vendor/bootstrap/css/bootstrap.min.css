@@ -1436,11 +1436,6 @@ pre code{
 	margin-right:-15px;
 	margin-left:-15px
 }
-.rowPfolio{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
 @media (min-width:768px){
 	.rowPfolio{
 		height:166px;
