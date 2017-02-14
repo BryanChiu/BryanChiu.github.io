@@ -196,10 +196,7 @@ section.success {
 	align-items: center;
 }
 #portfolio .portfolio-item .portfolio-link {
-	/*display:block;*/
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	display:block;
 	position:relative;
 	max-width:400px;
 	margin:0 auto;
