@@ -196,7 +196,10 @@ section.success {
 	align-items: center;
 }
 #portfolio .portfolio-item .portfolio-link {
-	display:block;
+	/*display:block;*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	position:relative;
 	max-width:400px;
 	margin:0 auto;
@@ -217,7 +220,7 @@ section.success {
 #portfolio .portfolio-item .portfolio-link .caption .caption-content {
 	position:absolute;
 	width:100%;
-	height:auto; /* 100px */
+	height:100px; /* 100px */
 	font-size:15px;
 	text-align:center;
 	margin-top:12px;
