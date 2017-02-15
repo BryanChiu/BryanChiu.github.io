@@ -204,9 +204,6 @@ section.success {
 	max-width:400px;
 	margin:0 auto;
 }
-#portfolio .portfolio-item .portfolio-link .preview {
-	background-size:cover;
-}
 #portfolio .portfolio-item .portfolio-link .caption {
 	background:rgba(24,188,156,.9);
 	position:absolute;
