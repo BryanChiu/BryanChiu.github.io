@@ -207,6 +207,7 @@ section.success {
 	width:100%;
 	height:100%;
 	opacity:0;
+	display:table;
 	transition:all ease .5s;
 	-webkit-transition:all ease .5s;
 	-moz-transition:all ease .5s
@@ -216,11 +217,13 @@ section.success {
 }
 #portfolio .portfolio-item .portfolio-link .caption .caption-content {
 	position:absolute;
-	width:100%;
+	display:table-cell;
+	vertical-align:middle;
+	/*width:100%;
 	height:100px; /* 100px */
 	font-size:15px;
 	text-align:center;
-	margin-top:12px;
+	/*margin-top:12px;*/
 	color:#fff
 }
 .btn-social,.scroll-top,.scroll-top .btn {
