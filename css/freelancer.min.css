@@ -200,6 +200,7 @@ section.success {
 #portfolio .portfolio-item .portfolio-link {
 	display:block;
 	position:relative;
+	min-height:100%;
 	max-width:400px;
 	margin:0 auto;
 }
