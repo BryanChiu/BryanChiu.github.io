@@ -1056,10 +1056,8 @@ img{
 }
 .carousel-inner>.item>a>img,.carousel-inner>.item>img,.img-responsive,.thumbnail a>img,.thumbnail>img{
 	display:block;
-	-o-object-fit:cover;
-	object-fit:cover;
-	/*max-width:100%;
-	height:auto;*/
+	max-width:100%;
+	height:auto;
 }
 .img-rounded{
 	border-radius:6px
