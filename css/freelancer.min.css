@@ -192,12 +192,10 @@ section.success {
 #portfolio .portfolio-item {
 	margin:0 0 15px;
 	right:0;
-	-o-object-fit:cover;
-	object-fit:cover;
 	overflow: hidden;
-	/*display: flex;
+	display: flex;
 	justify-content: center;
-	align-items: center;*/
+	align-items: center;
 }
 #portfolio .portfolio-item .portfolio-link {
 	display:block;
