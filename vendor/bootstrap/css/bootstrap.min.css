@@ -1142,6 +1142,11 @@ hr{
 .h2,h2{
 	font-size:30px
 }
+@media (max-height:992px) {
+	h2 {
+		font-size:22px;
+	}
+}
 .h3,h3{
 	font-size:24px
 }
