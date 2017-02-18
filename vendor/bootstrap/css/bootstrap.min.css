@@ -1140,9 +1140,14 @@ hr{
 	font-size:36px
 }
 .h2,h2{
-	font-size:22px
+	font-size:22px;
 }
-@media (min-height:992px) {
+@media (min-width:992px) {
+	h2 {
+		font-size:30px;
+	}
+}
+@media (max-width:768px) {
 	h2 {
 		font-size:30px;
 	}
