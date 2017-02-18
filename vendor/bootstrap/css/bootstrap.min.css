@@ -1140,17 +1140,7 @@ hr{
 	font-size:36px
 }
 .h2,h2{
-	font-size:10px;
-}
-@media (min-width:992px) {
-	h2 {
-		font-size:30px;
-	}
-}
-@media (max-width:768px) {
-	h2 {
-		font-size:30px;
-	}
+	font-size:30px
 }
 .h3,h3{
 	font-size:24px
