@@ -175,7 +175,17 @@ section {
 }
 section h2 {
 	margin:0;
-	font-size:3em
+	font-size:2em
+}
+@media (min-width:992px) {
+	section h2 {
+		font-size:3em
+	}
+}
+@media (max-width:768px) {
+	section h2 {
+		font-size:3em
+	}
 }
 section.success {
 	background:#18BC9C;
