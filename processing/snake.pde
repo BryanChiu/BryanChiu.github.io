@@ -1,6 +1,7 @@
 Snake snek;
 PVector food;
 boolean banKeyPress;
+int score;
 
 void setup() {
   size(500,500);
@@ -8,6 +9,7 @@ void setup() {
   snek = new Snake();
   newFood();
   banKeyPress=false;
+  score=0;
 }
 
 void draw() {
@@ -32,7 +34,10 @@ void draw() {
     textAlign(CENTER,CENTER);
     textSize(72);
     fill(0);
-    text("GAME OVER", 250,250);
+    text("GAME OVER", 250,200);
+    text(score,250,280);
+    textSize(24);
+    text("Press any key to start new game",250,350);
     if (keyPressed==true) {
       setup();
     }
@@ -73,6 +78,7 @@ class Snake {
     
     if (snake.get(snake.size()-1).x==food.x && snake.get(snake.size()-1).y==food.y) {
       newFood();
+      score++;
     } else {
       snake.remove(0);
     }
