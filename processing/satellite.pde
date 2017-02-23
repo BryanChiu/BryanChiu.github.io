@@ -41,7 +41,7 @@ boolean wall; // toggleable border that balls can bounce off of
 int noiseOffset; // offset for noise so CrawlingAnchor paths will not be the same
 
 void setup() {
-  size(900, 900);
+  size(600, 600);
   
   // create Ball objects
   for (int i=0; i<ballCount; i++) {
