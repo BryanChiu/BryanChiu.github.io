@@ -103,7 +103,7 @@ header .intro-text .skills {
 }
 #mainBackImg {
 	background-size: cover;
-	background-image: url("../img/mainBackgroundImg.png");
+	background-image: url("../img/mainBackgroundImg.jpg");
 }
 @media (min-width:768px) {
 	header .container {
