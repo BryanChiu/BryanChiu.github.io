@@ -36,11 +36,11 @@ class Branch {
   }
   
   void branchOff() {
-    PVector childBranch = new PVector(bLength.x, bLength.y);
+    PVector childBranch = new PVector(this.bLength.x, this.bLength.y);
     childBranch.rotate(rotation);
-    tree.add(new Branch(childBranch,magn*0.75,new PVector(base.x+bLength.x, base.y-bLength.y)));
-    childBranch = new PVector(bLength.x, bLength.y);
+    tree.add(new Branch(childBranch,magn*0.75,new PVector(this.base.x+this.bLength.x, this.base.y-this.bLength.y)));
+    childBranch = new PVector(this.bLength.x, this.bLength.y);
     childBranch.rotate(rotation*-1);
-    tree.add(new Branch(childBranch,magn*0.75,new PVector(base.x+bLength.x, base.y-bLength.y)));
+    tree.add(new Branch(childBranch,this.magn*0.75,new PVector(this.base.x+this.bLength.x, this.base.y-this.bLength.y)));
   }
 }
