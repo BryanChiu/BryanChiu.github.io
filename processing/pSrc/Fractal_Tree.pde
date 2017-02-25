@@ -25,7 +25,7 @@ class Branch {
     this.bLength = bLength.setMag(magn);
     this.base = base;
     if (magn>5) {
-      branchOff();
+      this.branchOff();
     }
   }
   
