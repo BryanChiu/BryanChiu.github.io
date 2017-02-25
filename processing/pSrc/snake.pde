@@ -43,7 +43,7 @@ void draw() {
     text("GAME OVER", 250,200);
     text(score,250,280);
     textSize(24);
-    text("Press 1/2/3 to select difficulty",250,320);
+    text("Press 1/2/3 to select difficulty",250,330);
     text("and start new game",250,360);
     if (keyPressed==true && (key=='1' || key=='2' || key=='3')) {
       diffculty = key;
