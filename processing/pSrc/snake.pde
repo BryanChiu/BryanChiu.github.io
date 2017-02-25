@@ -23,21 +23,8 @@ void pseudoSetup() {
 
 void draw() {
   background(200);
-  if ((snek.snake.size()-5)/4>(frameRate-5)/0.5) {
-    frameRate(frameRate+0.5);
-  }
-  
-  fill(255,0,0);
-  rect(food.x*20, food.y*20, 20, 20);
-  snek.motion();
-  snek.display();
-  snek.lifeOver();
-  
-  stroke(150);
-  for (int i=0; i<500; i+=20) {
-    line(i, 0, i, 500);
-    line(0, i, 500, i);
-  }
+  //frameRate(int(snek.snake.size()/5)*2+3);
+  frameRate(snek.snake.size());
   
   if (snek.isDead) {
     textAlign(CENTER,CENTER);
@@ -50,7 +37,20 @@ void draw() {
     if (keyPressed==true && key=="SPACE") {
       pseudoSetup();
     }
+  } else {
+    fill(255,0,0);
+    rect(food.x*20, food.y*20, 20, 20);
+    snek.motion();
+    snek.display();
+    snek.lifeOver();
   }
+  
+  stroke(150);
+  for (int i=0; i<500; i+=20) {
+    line(i, 0, i, 500);
+    line(0, i, 500, i);
+  }
+  
   banKeyPress=false;
 }
 
