@@ -46,7 +46,7 @@ void draw() {
     text("Press 1/2/3 to select difficulty",250,330);
     text("and start new game",250,360);
     if (keyPressed==true && (key=='1' || key=='2' || key=='3')) {
-      diffculty = key;
+      difficulty = key;
       pseudoSetup();
     }
   } else {
