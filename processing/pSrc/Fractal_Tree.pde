@@ -25,7 +25,6 @@ class Branch {
     this.bLength = bLength.setMag(magn);
     this.base = base;
     if (magn>5) {
-      println("ONE");
       this.branchOff();
     }
   }
@@ -37,10 +36,12 @@ class Branch {
   }
   
   void branchOff() {
-    println("TWO");
+    println("ONE");
     PVector childBranch = new PVector(bLength.x, bLength.y);
+    println("TWO");
     childBranch.rotate(rotation);
     tree.add(new Branch(childBranch,magn*0.75,new PVector(base.x+bLength.x, base.y-bLength.y)));
+    println("THREE");
     childBranch = new PVector(bLength.x, bLength.y);
     childBranch.rotate(rotation*-1);
     tree.add(new Branch(childBranch,magn*0.75,new PVector(base.x+bLength.x, base.y-bLength.y)));
