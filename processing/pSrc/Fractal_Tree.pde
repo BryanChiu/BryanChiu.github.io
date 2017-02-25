@@ -10,6 +10,7 @@ void draw() {
   rotation=(mouseY*1.0)/(height*1.0)*PI;
   tree.add(new Branch(new PVector(0,1), 100, new PVector(250, 450)));
   for (Branch stick : tree) {
+    print(stick.base.x);
     stick.display();
   }
   tree.clear();
@@ -24,9 +25,9 @@ class Branch {
     this.magn = magn;
     this.bLength = bLength.setMag(magn);
     this.base = base;
-    if (magn>5) {
+    /*if (magn>5) {
       this.branchOff();
-    }
+    }*/
   }
   
   void display() {
@@ -35,17 +36,14 @@ class Branch {
     line(base.x, base.y, base.x+bLength.x, base.y-bLength.y);
   }
   
-  void branchOff() {
-    println("ONE");
+  /*void branchOff() {
     PVector childBranch = new PVector(bLength.x, bLength.y);
-    println("TWO");
     childBranch.rotate(rotation);
     tree.add(new Branch(childBranch,magn*0.75,new PVector(base.x+bLength.x, base.y-bLength.y)));
-    println("THREE");
     childBranch = new PVector(bLength.x, bLength.y);
     childBranch.rotate(rotation*-1);
     tree.add(new Branch(childBranch,magn*0.75,new PVector(base.x+bLength.x, base.y-bLength.y)));
-  }
+  }*/
 }
 
 
