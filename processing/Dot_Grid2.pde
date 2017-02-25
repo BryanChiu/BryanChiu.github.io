@@ -20,7 +20,7 @@ void setup() {
 }
 
 class Grid {
-  float d = 5;
+  float d = 7;
   float xpos;
   float ypos;
   float v;
@@ -40,7 +40,7 @@ class Grid {
 }
 
 void draw() {
-  background(200);
+  background(250,160,50);
   if (mousePressed == true) {
     m = -M;
   } else {
