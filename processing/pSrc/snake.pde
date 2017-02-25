@@ -2,6 +2,7 @@ Snake snek;
 PVector food;
 boolean banKeyPress;
 int score;
+char difficulty = '1';
 
 void setup() {
   size(500,500);
@@ -23,7 +24,11 @@ void pseudoSetup() {
 
 void draw() {
   background(200);
-  frameRate(int(snek.snake.size()/5)*2+3);
+  switch (difficulty) {
+    case '1': frameRate(5); break;
+    case '2': frameRate((snek.snake.size()/10)*2+5); break;
+    case '3': frameRate(snek.snake.size());
+  }
   
   stroke(150);
   for (int i=0; i<500; i+=20) {
@@ -38,8 +43,10 @@ void draw() {
     text("GAME OVER", 250,200);
     text(score,250,280);
     textSize(24);
-    text("Press SPACE to start new game",250,350);
-    if (keyPressed==true && key==' ') {
+    text("Press 1/2/3 to select difficulty",250,350);
+    text("and start new game",250,350);
+    if (keyPressed==true && (key=='1' || key=='2' || key=='3')) {
+      diffculty = key;
       pseudoSetup();
     }
   } else {
