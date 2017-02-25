@@ -8,15 +8,11 @@ void setup() {
 void draw() {
   background(200,230,250);
   rotation=(mouseY*1.0)/(height*1.0)*PI;
-  plantSeed();
+  tree.add(new Branch(new PVector(0,1), 100.0, new PVector(250, 450)));
   for (Branch stick : tree) {
     stick.display();
   }
   tree.clear();
-}
-
-void plantSeed(){
-  tree.add(new Branch(new PVector(0,1), 100, new PVector(250, 450)));
 }
 
 class Branch {
