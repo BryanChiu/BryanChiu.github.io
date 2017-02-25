@@ -7,6 +7,15 @@ void setup() {
   size(500,500);
   frameRate(5);
   snek = new Snake();
+  snek.isDead = true;
+  newFood();
+  banKeyPress=false;
+  score=0;
+}
+
+void pseudoSetup() {
+  frameRate(5);
+  snek = new Snake();
   newFood();
   banKeyPress=false;
   score=0;
@@ -37,9 +46,9 @@ void draw() {
     text("GAME OVER", 250,200);
     text(score,250,280);
     textSize(24);
-    text("Press any key to start new game",250,350);
-    if (keyPressed==true) {
-      setup();
+    text("Press SPACE to start new game",250,350);
+    if (keyPressed==true && key=="SPACE") {
+      pseudoSetup();
     }
   }
   banKeyPress=false;
