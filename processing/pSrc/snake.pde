@@ -40,7 +40,7 @@ void draw() {
     text(score,250,280);
     textSize(24);
     text("Press SPACE to start new game",250,350);
-    if (keyPressed==true && key==" ") {
+    if (keyPressed==true && key==' ') {
       pseudoSetup();
     }
   } else {
