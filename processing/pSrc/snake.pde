@@ -26,6 +26,12 @@ void draw() {
   //frameRate(int(snek.snake.size()/5)*2+3);
   frameRate(snek.snake.size());
   
+  stroke(150);
+  for (int i=0; i<500; i+=20) {
+    line(i, 0, i, 500);
+    line(0, i, 500, i);
+  }
+  
   if (snek.isDead) {
     textAlign(CENTER,CENTER);
     textSize(72);
@@ -43,12 +49,6 @@ void draw() {
     snek.motion();
     snek.display();
     snek.lifeOver();
-  }
-  
-  stroke(150);
-  for (int i=0; i<500; i+=20) {
-    line(i, 0, i, 500);
-    line(0, i, 500, i);
   }
   
   banKeyPress=false;
