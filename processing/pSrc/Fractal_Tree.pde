@@ -16,9 +16,9 @@ void draw() {
 }
 
 class Branch {
-  PVector bLength;
-  float magn;
-  PVector base;
+  PVector bLength = new PVector(0,1);
+  float magn = 100;
+  PVector base = new PVector(250,450);
   
   Branch(PVector bLength, float magn, PVector base) {
     this.magn = magn;
