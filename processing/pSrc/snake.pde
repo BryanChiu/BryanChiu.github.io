@@ -23,8 +23,7 @@ void pseudoSetup() {
 
 void draw() {
   background(200);
-  //frameRate(int(snek.snake.size()/5)*2+3);
-  frameRate(snek.snake.size());
+  frameRate(int(snek.snake.size()/5)*2+3);
   
   stroke(150);
   for (int i=0; i<500; i+=20) {
