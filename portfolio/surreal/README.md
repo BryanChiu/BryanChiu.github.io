@@ -1,1 +1,1 @@
-Surrealistic images
+Surrealism and manipulation
