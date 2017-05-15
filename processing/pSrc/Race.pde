@@ -1,5 +1,5 @@
 void setup() {
-  size(displayWidth, displayHeight);
+  size(1920, 1080);
   loadPixels();
 }
 
