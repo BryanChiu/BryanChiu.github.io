@@ -14,7 +14,7 @@ void setup() {
   two = loadImage("two.jpg");
   steam = loadImage("steamer.png");
 
-  painted = createGraphics(two.width, two.height);  
+  painted = createGraphics(two.width, two.height);
 
   imageMode(CENTER);
   image(one, width/2, height/2);
@@ -34,6 +34,10 @@ void draw() {
 }
 
 void updateDisplayed() {
+  one.loadPixels();
+  two.loadPixels();
+  steam.loadPixels();
+  
   int blackCount=0;
   for (int i=0; i<painted.pixels.length; i++) {
     if (painted.pixels[i]==color(0)) {
@@ -44,4 +48,8 @@ void updateDisplayed() {
   if (blackCount>painted.pixels.length*0.98) {
     println("COMPLETED");
   }
+  
+  one.updatePixels();
+  two.updatePixels();
+  steam.updatePixels();
 }
