@@ -12,11 +12,14 @@ void setup() {
   size(800, 600, P2D);
   frameRate(30);
 
+  steam = loadImage("steamer.png");
   one = loadImage("one.jpg");
   two = loadImage("two.jpg");
-  steam = loadImage("steamer.png");
-
   painted = createGraphics(two.width, two.height, P2D);
+
+  one.loadPixels();
+  two.loadPixels();
+  painted.loadPixels();
 
   imageMode(CENTER);
   image(one, width/2, height/2);
@@ -32,14 +35,13 @@ void draw() {
     painted.ellipse(mouseX-two.width/2, mouseY, 60, 60);
     painted.endDraw();
     updateDisplayed();
-    image(painted, width/2, height/2);
   }
 }
 
 void updateDisplayed() {
-  one.loadPixels();
-  two.loadPixels();
-  painted.loadPixels();
+  one.updatePixels();
+  two.updatePixels();
+  painted.updatePixels();
 
   blackCount=0;
   for (int i=0; i<painted.pixels.length; i++) {
@@ -48,12 +50,11 @@ void updateDisplayed() {
       blackCount++;
     }
   }
-  one.pixels[frameCount] = two.pixels[frameCount];
   if (blackCount>painted.pixels.length*0.98) {
     println("COMPLETED");
   }
 
-  one.updatePixels();
-  two.updatePixels();
-  painted.updatePixels();
+  one.loadPixels();
+  two.loadPixels();
+  painted.loadPixels();
 }
