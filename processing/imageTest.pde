@@ -10,7 +10,6 @@ int blackCount=0;
 
 void setup() {
   size(800, 600);
-  frameRate(30);
 
   steam = loadImage("steamer.png");
   one = loadImage("one.jpg");
@@ -45,7 +44,7 @@ void updateDisplayed() {
   blackCount=0;
   for (int i=0; i<painted.pixels.length; i++) {
     if (painted.pixels[i]==color(0)) {
-      one.set(i%one.width, i/one.width, two.get(i%two.width, i/two.width));
+      one.pixels[i] = two.pixels[i];
       blackCount++;
     }
   }
