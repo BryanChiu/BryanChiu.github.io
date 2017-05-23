@@ -1,6 +1,4 @@
-/* @pjs preload="data/one.jpg"; */
-/* @pjs preload="data/two.jpg"; */
-/* @pjs preload="data/steamer.png"; */
+/* @pjs preload="data/one.jpg,data/two.jpg,data/steamer.png"; */
 
 PImage one;
 PImage two;
