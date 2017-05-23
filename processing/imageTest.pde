@@ -21,6 +21,7 @@ void setup() {
 }
 
 void draw() {
+  println(frameRate);
   background(200);
   image(one, width/2, height/2);
   if (mousePressed) {
@@ -48,6 +49,8 @@ void updateDisplayed() {
   if (blackCount>painted.pixels.length*0.98) {
     println("COMPLETED");
   }
+  
+  println("BlackCount ="+Integer.toString(blackCount));
   
   one.updatePixels();
   two.updatePixels();
