@@ -7,14 +7,14 @@ PImage steam;
 PGraphics painted;
 
 void setup() {
-  size(800, 600);
+  size(800, 600, P2D);
   frameRate(120);
 
   one = loadImage("one.jpg");
   two = loadImage("two.jpg");
   steam = loadImage("steamer.png");
 
-  painted = createGraphics(two.width, two.height, JAVA2D);
+  painted = createGraphics(two.width, two.height, P2D);
 
   imageMode(CENTER);
   image(one, width/2, height/2);
