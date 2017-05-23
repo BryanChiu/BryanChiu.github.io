@@ -14,7 +14,7 @@ void setup() {
   two = loadImage("two.jpg");
   steam = loadImage("steamer.png");
 
-  painted = createGraphics(two.width, two.height);
+  painted = createGraphics(two.width, two.height, JAVA2D);
 
   imageMode(CENTER);
   image(one, width/2, height/2);
@@ -49,8 +49,6 @@ void updateDisplayed() {
   if (blackCount>painted.pixels.length*0.98) {
     println("COMPLETED");
   }
-  
-  println("BlackCount ="+Integer.toString(blackCount));
   
   one.updatePixels();
   two.updatePixels();
