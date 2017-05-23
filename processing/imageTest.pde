@@ -52,6 +52,7 @@ void updateDisplayed() {
   if (blackCount>painted.pixels.length*0.98) {
     println("COMPLETED");
   }
+  image(painted,width/2, height/2);
   
   one.updatePixels();
   two.updatePixels();
