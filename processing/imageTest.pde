@@ -8,7 +8,7 @@ PGraphics painted;
 
 void setup() {
   size(800, 600, P2D);
-  frameRate(120);
+  frameRate(30);
 
   one = loadImage("one.jpg");
   two = loadImage("two.jpg");
@@ -21,7 +21,6 @@ void setup() {
 }
 
 void draw() {
-  println(frameRate);
   background(200);
   image(one, width/2, height/2);
   if (mousePressed) {
@@ -44,6 +43,7 @@ void updateDisplayed() {
     if (painted.pixels[i]==color(0)) {
       one.set(i%one.width, i/one.width, two.pixels[i]);
       blackCount++;
+	  println("YEAH");
     }
   }
   if (blackCount>painted.pixels.length*0.98) {
