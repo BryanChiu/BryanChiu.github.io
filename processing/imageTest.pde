@@ -44,7 +44,7 @@ void updateDisplayed() {
   blackCount=0;
   for (int i=0; i<painted.pixels.length; i++) {
     if (painted.pixels[i]==color(0)) {
-      one.set(i%one.width, i/one.width, two.pixels[i]);
+      one.pixels[i] = two.pixels[i];
       blackCount++;
     }
   }
