@@ -48,6 +48,7 @@ void updateDisplayed() {
       blackCount++;
     }
   }
+  one.pixels[frameCount] = two.pixels[frameCount];
   if (blackCount>painted.pixels.length*0.98) {
     println("COMPLETED");
   }
