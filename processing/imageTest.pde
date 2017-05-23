@@ -10,6 +10,7 @@ int blackCount=0;
 
 void setup() {
   size(800, 600);
+  frameRate(30);
 
   steam = loadImage("steamer.png");
   one = loadImage("one.jpg");
