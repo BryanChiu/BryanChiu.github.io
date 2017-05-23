@@ -24,6 +24,7 @@ void draw() {
   background(200);
   image(one, width/2, height/2);
   if (mousePressed) {
+    println(mouseX, mouseY);
     image(steam, mouseX+30, mouseY+70);
     painted.beginDraw();
     painted.fill(0);
@@ -43,7 +44,6 @@ void updateDisplayed() {
     if (painted.pixels[i]==color(0)) {
       one.set(i%one.width, i/one.width, two.pixels[i]);
       blackCount++;
-	  println("YEAH");
     }
   }
   if (blackCount>painted.pixels.length*0.98) {
