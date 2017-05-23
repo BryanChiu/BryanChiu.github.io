@@ -1,4 +1,4 @@
-/* @pjs preload="data/one.jpg,data/two.jpg,data/steamer.png"; */
+/* @pjs preload="one.jpg,two.jpg,steamer.png"; */
 
 PImage one;
 PImage two;
@@ -10,9 +10,9 @@ void setup() {
   size(800, 600);
   frameRate(120);
 
-  one = loadImage("data/one.jpg");
-  two = loadImage("data/two.jpg");
-  steam = loadImage("data/steamer.png");
+  one = loadImage("one.jpg");
+  two = loadImage("two.jpg");
+  steam = loadImage("steamer.png");
 
   painted = createGraphics(two.width, two.height);  
 
