@@ -24,13 +24,13 @@ void draw() {
   background(200);
   image(one, width/2, height/2);
   if (mousePressed) {
-    println(mouseX, mouseY);
     image(steam, mouseX+30, mouseY+70);
     painted.beginDraw();
     painted.fill(0);
     painted.ellipse(mouseX-two.width/2, mouseY, 60, 60);
     painted.endDraw();
     updateDisplayed();
+    image(painted, width/2, height/2);
   }
 }
 
@@ -38,7 +38,7 @@ void updateDisplayed() {
   one.loadPixels();
   two.loadPixels();
   painted.loadPixels();
-  
+
   int blackCount=0;
   for (int i=0; i<painted.pixels.length; i++) {
     if (painted.pixels[i]==color(0)) {
@@ -49,7 +49,7 @@ void updateDisplayed() {
   if (blackCount>painted.pixels.length*0.98) {
     println("COMPLETED");
   }
-  
+
   one.updatePixels();
   two.updatePixels();
   painted.updatePixels();
