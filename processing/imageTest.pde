@@ -39,9 +39,9 @@ void draw() {
 }
 
 void updateDisplayed() {
-  one.updatePixels();
-  two.updatePixels();
-  painted.updatePixels();
+  one.loadPixels();
+  two.loadPixels();
+  painted.loadPixels();
 
   blackCount=0;
   for (int i=0; i<painted.pixels.length; i++) {
@@ -53,8 +53,8 @@ void updateDisplayed() {
   if (blackCount>painted.pixels.length*0.98) {
     println("COMPLETED");
   }
-
-  one.loadPixels();
-  two.loadPixels();
-  painted.loadPixels();
+  
+  one.updatePixels();
+  two.updatePixels();
+  painted.updatePixels();
 }
