@@ -8,9 +8,9 @@ void setup() {
   size(800, 600);
   frameRate(120);
 
-  one = loadImage("one.jpg");
-  two = loadImage("two.jpg");
-  steam = loadImage("steamer.png");
+  one = loadImage("data/one.jpg");
+  two = loadImage("data/two.jpg");
+  steam = loadImage("data/steamer.png");
 
   painted = createGraphics(two.width, two.height);  
 
