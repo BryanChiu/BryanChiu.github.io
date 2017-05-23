@@ -6,6 +6,8 @@ PImage steam;
 
 PGraphics painted;
 
+int blackCount=0;
+
 void setup() {
   size(800, 600, P2D);
   frameRate(30);
@@ -39,7 +41,7 @@ void updateDisplayed() {
   two.loadPixels();
   painted.loadPixels();
 
-  int blackCount=0;
+  blackCount=0;
   for (int i=0; i<painted.pixels.length; i++) {
     if (painted.pixels[i]==color(0)) {
       one.set(i%one.width, i/one.width, two.pixels[i]);
