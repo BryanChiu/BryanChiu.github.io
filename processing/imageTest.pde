@@ -36,7 +36,7 @@ void draw() {
 void updateDisplayed() {
   one.loadPixels();
   two.loadPixels();
-  steam.loadPixels();
+  painted.loadPixels();
   
   int blackCount=0;
   for (int i=0; i<painted.pixels.length; i++) {
@@ -51,5 +51,5 @@ void updateDisplayed() {
   
   one.updatePixels();
   two.updatePixels();
-  steam.updatePixels();
+  painted.updatePixels();
 }
