@@ -19,7 +19,6 @@ void setup() {
 
   one.loadPixels();
   two.loadPixels();
-  painted.loadPixels();
 
   imageMode(CENTER);
   image(one, width/2, height/2);
