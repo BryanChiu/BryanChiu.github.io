@@ -9,13 +9,13 @@ PGraphics painted;
 int blackCount=0;
 
 void setup() {
-  size(800, 600, P2D);
+  size(800, 600);
   frameRate(30);
 
   steam = loadImage("steamer.png");
   one = loadImage("one.jpg");
   two = loadImage("two.jpg");
-  painted = createGraphics(two.width, two.height, P2D);
+  painted = createGraphics(two.width, two.height);
 
   one.loadPixels();
   two.loadPixels();
