@@ -31,5 +31,16 @@ void draw() {
     painted.fill(0);
     painted.ellipse(mouseX-vec.width/2, mouseY, 60, 60);
     painted.endDraw();
+    updateDisplayed();
   }
+}
+
+void updateDisplayed() {
+  
+  org.loadPixels();
+  
+  org.pixels[frameCount] = color(0);
+  
+  org.updatePixels();
+
 }
