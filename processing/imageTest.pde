@@ -1,7 +1,7 @@
 /* @pjs preload="one.jpg,two.jpg,steamer.png"; */
 
-PImage one;
-PImage two;
+PImage org;
+PImage vec;
 PImage steam;
 
 PGraphics painted;
@@ -12,18 +12,19 @@ void setup() {
   size(800, 600);
 
   steam = loadImage("steamer.png");
-  one = loadImage("one.jpg");
-  two = loadImage("two.jpg");
-  painted = createGraphics(two.width, two.height);
+  org = loadImage("one.jpg");
+  vec = loadImage("two.jpg");
+  painted = createGraphics(vec.width, vec.height);
 
-  one.loadPixels();
-  two.loadPixels();
+  org.loadPixels();
+  vec.loadPixels();
 
   imageMode(CENTER);
 }
 
 void draw() {
   background(200);
+  image(org, width/2, height/2);
   if (mousePressed) {
     image(steam, mouseX+30, mouseY+70);
     painted.beginDraw();
@@ -32,25 +33,24 @@ void draw() {
     painted.endDraw();
     updateDisplayed();
   }
-  image(two, width/2, height/2);
 }
 
 void updateDisplayed() {
   blackCount = 0;
   
-  one.loadPixels();
-  two.loadPixels();
+  org.loadPixels();
+  vec.loadPixels();
   painted.loadPixels();
 
   for (int i=0; i<painted.pixels.length; i++) {
     if (painted.pixels[i]==color(0)) {
-      two.pixels[i] = one.pixels[i];
+      org.pixels[i] = vec.pixels[i];
       blackCount++;
     }
   }
   
-  one.updatePixels();
-  two.updatePixels();
+  org.updatePixels();
+  vec.updatePixels();
   painted.updatePixels();
   
   if (blackCount>painted.pixels.length*0.98) {
