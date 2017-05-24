@@ -41,6 +41,8 @@ void updateDisplayed() {
   org.loadPixels();
   vec.loadPixels();
   painted.loadPixels();
+  
+  org.pixels[frameCount] = color(0);
 
   for (int i=0; i<painted.pixels.length; i++) {
     if (painted.pixels[i]==color(0)) {
