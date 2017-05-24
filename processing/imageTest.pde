@@ -29,7 +29,7 @@ void draw() {
     image(steam, mouseX+30, mouseY+70);
     painted.beginDraw();
     painted.fill(0);
-    painted.ellipse(mouseX-two.width/2, mouseY, 60, 60);
+    painted.ellipse(mouseX-vec.width/2, mouseY, 60, 60);
     painted.endDraw();
     updateDisplayed();
   }
