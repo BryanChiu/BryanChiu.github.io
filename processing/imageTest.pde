@@ -20,12 +20,10 @@ void setup() {
   two.loadPixels();
 
   imageMode(CENTER);
-  image(one, width/2, height/2);
 }
 
 void draw() {
   background(200);
-  image(one, width/2, height/2);
   if (mousePressed) {
     image(steam, mouseX+30, mouseY+70);
     painted.beginDraw();
@@ -34,6 +32,7 @@ void draw() {
     painted.endDraw();
     updateDisplayed();
   }
+  image(two, width/2, height/2);
 }
 
 void updateDisplayed() {
@@ -45,7 +44,7 @@ void updateDisplayed() {
 
   for (int i=0; i<painted.pixels.length; i++) {
     if (painted.pixels[i]==color(0)) {
-      one.pixels[i] = two.pixels[i];
+      two.pixels[i] = one.pixels[i];
       blackCount++;
     }
   }
