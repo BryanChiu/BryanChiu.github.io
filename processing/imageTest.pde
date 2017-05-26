@@ -46,9 +46,9 @@ void level() {
 void updateDisplayed() {
   blackCount = 0;
 
-  //lvlImg[imgCount].loadPixels();
-  //lvlImg[imgCount+1].loadPixels();
-  //painted.loadPixels();
+  lvlImg[imgCount].loadPixels();
+  lvlImg[imgCount+1].loadPixels();
+  painted.loadPixels();
 
   for (int i=0; i<painted.pixels.length; i++) {
     if (painted.pixels[i]==color(0)) {
@@ -57,9 +57,9 @@ void updateDisplayed() {
     }
   }
 
-  //lvlImg[imgCount].loadPixels();
-  //lvlImg[imgCount+1].loadPixels();
-  //painted.loadPixels();
+  lvlImg[imgCount].loadPixels();
+  lvlImg[imgCount+1].loadPixels();
+  painted.loadPixels();
 
   if (blackCount>painted.pixels.length*0.95) {
     imgCount++;
