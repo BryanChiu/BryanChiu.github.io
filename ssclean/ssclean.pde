@@ -200,7 +200,7 @@ void displayBackground() {
 
 void displayFirst() {
   image(FirstScreen, width/2, height/2);
-  if (mousePressed && mouseX>200 && mouseX<700 && mouseY>250 && mouseY<400) {
+  if (mousePressed) {
     display = Screen.MENU;
   }
 }
