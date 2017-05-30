@@ -1,13 +1,13 @@
 /* @pjs preload="FirstScreen.jpg, MenuScreen.jpg, LastScreen.jpg, Toolbar.png, hand.png, rinse.png, rag.png, steamer.png, paint.png, brush.png, vacuum.png, clay.png, conditioner.png, cleaner.png, checkmark.png, mat.jpg, mat2.png, mat3.png, mat4.png, mat3.png, mat2.png, concrete.jpg, Doors1.jpg, Doors4.jpg, Doors6.jpg, Doors5.jpg, Doors7.jpg, Doors2.jpg, Doors3.jpg, Seats1.jpg, Seats3.jpg, Seats4.jpg, Seats5.jpg, Seats6.jpg, Seats7.jpg, Seats2.jpg, Seats8.jpg, Carpet1.jpg, Carpet3.jpg, Carpet4.jpg, Carpet5.jpg, Carpet6.jpg, Carpet7.jpg, Carpet2.jpg, Dash2.jpg, Dash3.jpg, Dash4.jpg, Dash1.jpg, Console2.jpg, Console3.jpg, Console4.jpg, Console1.jpg, VentsC2.jpg, VentsC3.jpg, VentsC1.jpg, VentsS2.jpg, VentsS3.jpg, VentsS4.jpg, VentsS1.jpg, windowsI2.jpg, windowsI3.jpg, windowsI4.jpg, windowsI1.jpg, windowsX2.jpg, windowsX3.jpg, windowsX4.jpg, windowsX5.jpg, windowsX6.jpg, windowsX1.jpg"; */
 
-enum Screen { 
+enum Segment { 
   FIRST, MENU, LEVEL, LAST
 };
 enum Equip { 
   NONE, RINSE, RAG, STEAM, PAINT, BRUSH, VAC, CLAY, CONDR, CLEAN
 };
 HashMap<Equip, String> tool2Task = new HashMap<Equip, String>();
-Screen display;
+Segment display;
 Equip tool; 
 PImage FirstScreen, MenuScreen, LastScreen, Toolbar;
 PImage none, rinse, rag, steam, paint, brush, vac, clay, condr, clean;
@@ -31,7 +31,7 @@ int taskPercent;
 void setup() {
   size(900, 600);
   imageMode(CENTER);
-  display = Screen.FIRST;
+  display = Segment.FIRST;
   tool = Equip.NONE;
   levelCount = -1;
   taskCount = 0;
@@ -201,7 +201,7 @@ void displayBackground() {
 void displayFirst() {
   image(FirstScreen, width/2, height/2);
   if (mousePressed) {
-    display = Screen.MENU;
+    display = Segment.MENU;
   }
 }
 
@@ -215,7 +215,7 @@ void displayMenu() {
     }
   }
   if (mousePressed && mouseX>440 && mouseX<800 && mouseY>435 && mouseY<550) {
-    display = Screen.LEVEL;
+    display = Segment.LEVEL;
     levelCount++;
     taskCount = 0;
     buffer = 30;
@@ -356,9 +356,9 @@ void displayTasks() {
         taskPercent = 0;
         painted = createGraphics(lvlImgs[levelCount][taskCount].width, lvlImgs[levelCount][taskCount].height);
       } else if (levelCount==9) {
-        display = Screen.LAST;
+        display = Segment.LAST;
       } else {
-        display = Screen.MENU;
+        display = Segment.MENU;
       }
     }
   }
