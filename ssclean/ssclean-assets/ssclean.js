@@ -231,40 +231,40 @@ function displayLast() {
 }
 
 function loadAssets() {
-  FirstScreen = loadImage("FirstScreen.jpg");
-  MenuScreen = loadImage("MenuScreen.jpg");
-  LastScreen = loadImage("LastScreen.jpg");
-  Toolbar = loadImage("Toolbar.png");
-  none = loadImage("hand.png");
-  rinse = loadImage("rinse.png");
-  rag = loadImage("rag.png");
-  steam = loadImage("steamer.png");
-  paint = loadImage("paint.png");
-  brush = loadImage("brush.png");
-  vac = loadImage("vacuum.png");
-  clay = loadImage("clay.png");
-  condr = loadImage("conditioner.png");
-  clean = loadImage("cleaner.png");
-  checkmark = loadImage("checkmark.png");
+  FirstScreen = loadImage("ssclean-assets/FirstScreen.jpg");
+  MenuScreen = loadImage("ssclean-assets/MenuScreen.jpg");
+  LastScreen = loadImage("ssclean-assets/LastScreen.jpg");
+  Toolbar = loadImage("ssclean-assets/Toolbar.png");
+  none = loadImage("ssclean-assets/hand.png");
+  rinse = loadImage("ssclean-assets/rinse.png");
+  rag = loadImage("ssclean-assets/rag.png");
+  steam = loadImage("ssclean-assets/steamer.png");
+  paint = loadImage("ssclean-assets/paint.png");
+  brush = loadImage("ssclean-assets/brush.png");
+  vac = loadImage("ssclean-assets/vacuum.png");
+  clay = loadImage("ssclean-assets/clay.png");
+  condr = loadImage("ssclean-assets/conditioner.png");
+  clean = loadImage("ssclean-assets/cleaner.png");
+  checkmark = loadImage("ssclean-assets/checkmark.png");
 }
 
 function loadLevels() {
   lvlImgs = [
-    [loadImage("mat1.jpg"), loadImage("mat2.png"), loadImage("mat3.png"), loadImage("mat4.png"), 
-    loadImage("mat3.png"), loadImage("mat2.png"), loadImage("concrete.jpg")], 
-    [loadImage("Doors1.jpg"), loadImage("Doors4.jpg"), loadImage("Doors6.jpg"), loadImage("Doors5.jpg"), 
-    loadImage("Doors6.jpg"), loadImage("Doors4.jpg"), loadImage("Doors7.jpg"), loadImage("Doors2.jpg"), loadImage("Doors3.jpg")], 
-    [loadImage("Seats1.jpg"), loadImage("Seats3.jpg"), loadImage("Seats4.jpg"), loadImage("Seats5.jpg"), 
-    loadImage("Seats6.jpg"), loadImage("Seats5.jpg"), loadImage("Seats4.jpg"), loadImage("Seats7.jpg"), loadImage("Seats2.jpg"), loadImage("Seats8.png")], 
-    [loadImage("Carpet1.jpg"), loadImage("Carpet3.jpg"), loadImage("Carpet4.jpg"), 
-    loadImage("Carpet5.jpg"), loadImage("Carpet6.jpg"), loadImage("Carpet7.jpg"), loadImage("Carpet2.jpg")], 
-    [loadImage("Dash2.jpg"), loadImage("Dash3.jpg"), loadImage("Dash2.jpg"), loadImage("Dash4.jpg"), loadImage("Dash1.jpg")], 
-    [loadImage("Console2.jpg"), loadImage("Console3.jpg"), loadImage("Console2.jpg"), loadImage("Console4.jpg"), loadImage("Console1.jpg")], 
-    [loadImage("VentsC2.jpg"), loadImage("VentsC3.jpg"), loadImage("VentsC1.jpg")], 
-    [loadImage("VentsS2.jpg"), loadImage("VentsS3.jpg"), loadImage("VentsS4.jpg"), loadImage("VentsS3.jpg"), loadImage("VentsS1.jpg")], 
-    [loadImage("windowsI2.jpg"), loadImage("windowsI3.jpg"), loadImage("windowsI4.jpg"), loadImage("windowsI1.jpg")], 
-    [loadImage("windowsX2.jpg"), loadImage("windowsX3.jpg"), loadImage("windowsX4.jpg"), loadImage("windowsX5.jpg"), 
-    loadImage("windowsX6.jpg"), loadImage("windowsX1.jpg")]];
+    [loadImage("ssclean-assets/mat1.jpg"), loadImage("ssclean-assets/mat2.png"), loadImage("ssclean-assets/mat3.png"), loadImage("ssclean-assets/mat4.png"), 
+    loadImage("ssclean-assets/mat3.png"), loadImage("ssclean-assets/mat2.png"), loadImage("ssclean-assets/concrete.jpg")], 
+    [loadImage("ssclean-assets/Doors1.jpg"), loadImage("ssclean-assets/Doors4.jpg"), loadImage("ssclean-assets/Doors6.jpg"), loadImage("ssclean-assets/Doors5.jpg"), 
+    loadImage("ssclean-assets/Doors6.jpg"), loadImage("ssclean-assets/Doors4.jpg"), loadImage("ssclean-assets/Doors7.jpg"), loadImage("ssclean-assets/Doors2.jpg"), loadImage("ssclean-assets/Doors3.jpg")], 
+    [loadImage("ssclean-assets/Seats1.jpg"), loadImage("ssclean-assets/Seats3.jpg"), loadImage("ssclean-assets/Seats4.jpg"), loadImage("ssclean-assets/Seats5.jpg"), 
+    loadImage("ssclean-assets/Seats6.jpg"), loadImage("ssclean-assets/Seats5.jpg"), loadImage("ssclean-assets/Seats4.jpg"), loadImage("ssclean-assets/Seats7.jpg"), loadImage("ssclean-assets/Seats2.jpg"), loadImage("ssclean-assets/Seats8.png")], 
+    [loadImage("ssclean-assets/Carpet1.jpg"), loadImage("ssclean-assets/Carpet3.jpg"), loadImage("ssclean-assets/Carpet4.jpg"), 
+    loadImage("ssclean-assets/Carpet5.jpg"), loadImage("ssclean-assets/Carpet6.jpg"), loadImage("ssclean-assets/Carpet7.jpg"), loadImage("ssclean-assets/Carpet2.jpg")], 
+    [loadImage("ssclean-assets/Dash2.jpg"), loadImage("ssclean-assets/Dash3.jpg"), loadImage("ssclean-assets/Dash2.jpg"), loadImage("ssclean-assets/Dash4.jpg"), loadImage("ssclean-assets/Dash1.jpg")], 
+    [loadImage("ssclean-assets/Console2.jpg"), loadImage("ssclean-assets/Console3.jpg"), loadImage("ssclean-assets/Console2.jpg"), loadImage("ssclean-assets/Console4.jpg"), loadImage("ssclean-assets/Console1.jpg")], 
+    [loadImage("ssclean-assets/VentsC2.jpg"), loadImage("ssclean-assets/VentsC3.jpg"), loadImage("ssclean-assets/VentsC1.jpg")], 
+    [loadImage("ssclean-assets/VentsS2.jpg"), loadImage("ssclean-assets/VentsS3.jpg"), loadImage("ssclean-assets/VentsS4.jpg"), loadImage("ssclean-assets/VentsS3.jpg"), loadImage("ssclean-assets/VentsS1.jpg")], 
+    [loadImage("ssclean-assets/windowsI2.jpg"), loadImage("ssclean-assets/windowsI3.jpg"), loadImage("ssclean-assets/windowsI4.jpg"), loadImage("ssclean-assets/windowsI1.jpg")], 
+    [loadImage("ssclean-assets/windowsX2.jpg"), loadImage("ssclean-assets/windowsX3.jpg"), loadImage("ssclean-assets/windowsX4.jpg"), loadImage("ssclean-assets/windowsX5.jpg"), 
+    loadImage("ssclean-assets/windowsX6.jpg"), loadImage("ssclean-assets/windowsX1.jpg")]];
   lvlTools = [
     ["NONE", "RINSE", "PAINT", "STEAM", "RAG"], //mats
     ["NONE", "RINSE", "PAINT", "STEAM", "RAG", "CONDR"], //doors
