@@ -277,7 +277,3 @@ function mouseWheel(event) {
     return false;
   }
 }
-
-function mouseClicked() {
-  return false;
-}
