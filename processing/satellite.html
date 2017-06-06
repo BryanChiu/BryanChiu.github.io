@@ -17,7 +17,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-	<script src="processing.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.10/p5.js"></script>
+	<script src="pSrc/satelliteJS.js"></script>
 	
 </head>
 
@@ -40,11 +41,11 @@
                             <h2>Satellite</h2>
                             <hr class="star-primary">
                             <p style="font-size:90%">*Only playable with a mouse & keyboard*</p>
-							<center><canvas data-processing-sources="pSrc/satellite.pde"></canvas></center>
-                            <p>Visualizer based on satellites around celestial bodies. Left click to create anchor, left click anchor to convert to crawling anchor. Right click and hold to create anchor on cursor. Right click anchor to remove. "W" key to toggle walls.</p>
+							<div id='sketch-holder' style="width: 900px; margin: auto" oncontextmenu="return false;"></div>
+                            <p>Visualizer based on satellites around celestial bodies. Left click to create anchor, left click anchor to convert to crawling anchor. Right click and hold to create anchor on cursor. Right click anchor to remove. "W" key to toggle walls. Scroll to change speed. This program was written in Java and converted to JavaSript.</p>
                             <ul class="list-inline item-details">
                                 <li>Source code:
-                                    <strong><a href="pSrc/satellite.pde" target="_blank">Satellite</a>
+                                    <strong><a href="pSrc/satellite.js" target="_blank">Satellite</a>
                                     </strong>
                                 </li>
                             </ul>
