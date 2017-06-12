@@ -175,4 +175,5 @@ function touchStarted() {
     player.jumping = true;
     player.jumptime = 20.0;
   }
+  return false;
 }
