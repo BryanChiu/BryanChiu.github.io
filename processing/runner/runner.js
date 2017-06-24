@@ -8,17 +8,17 @@ var obstCount;
 var score;
 
 function setup() {
-  var canvas = createCanvas(windowWidth, windowHeight);
+  var canvas = createCanvas(windowWidth, (windowHeight>1800 ? 1800 : windowHeight));
   //parent.canvas = "sketch-holder";
 
   obstList = [];
-  for (var i = 0; i<ceil(width/366); i++) {
+  for (var i = 0; i<5; i++) {
     obstList.push(new Obstacle());
   }
   player = new Character();
   newGame = true;
   ground = new Ground();
-  obstSpeed = 6;
+  obstSpeed = width/120;
   score = 0;
 }
 
@@ -64,7 +64,8 @@ function playGame() {
   player.display();
 
   if (obstOffset-- == 0) {
-    obstOffset = 60;
+    obstOffset = floor(width/16);
+    console.log(obstOffset);
     if (obstCount == obstList.length) {
       obstCount = 0;
     }
@@ -74,25 +75,27 @@ function playGame() {
 
 function displayScore() {
   textAlign(CENTER, CENTER);
-  textSize(width/25);
+  textSize(72);
   stroke(0);
   fill(255);
   text(score, width/2, height/5);
 }
 
 function Character() {
-  this.rad = 25;
+  this.rad = width/25;
   this.col = color(200, 50, 50);
   this.loc = createVector(width/5, height*4/5-this.rad);
   this.jumping = false;
-  this.jumptime = 0.0;
+  this.jumpAcc = -this.rad/80;
+  this.jumpVel = 0.0;
 
   this.motion = function() {
     if (this.jumping) {
-      this.loc.y-=this.jumptime/2;
-      this.jumptime--;
-      if (this.loc.y+this.rad==ground.y) {
+      this.loc.y-=this.jumpVel;
+      this.jumpVel+=this.jumpAcc;
+      if (this.loc.y+this.rad>=ground.y) {
         this.jumping = false;
+        this.loc.y = ground.y-this.rad;
       }
     }
   }
@@ -113,7 +116,7 @@ function Character() {
 }
 
 function Obstacle() {
-  this.rad = 25;
+  this.rad = width/25;
   this.col = color(0);
   this.loc = createVector(width+this.rad+10, height*4/5-this.rad);
   this.active = false;
@@ -125,7 +128,7 @@ function Obstacle() {
       if (this.loc.x+this.rad<0) {
         this.active = false;
         this.scored = false;
-        this.loc.x = width+this.rad;
+        this.loc.x = width+this.rad+10;
       }
     }
     if (!(this.scored) && this.loc.x+this.rad<player.loc.x-player.rad) {
@@ -156,7 +159,7 @@ function Ground() {
 function keyPressed() {
   if (key==' ' && !(player.jumping)) {
     player.jumping = true;
-    player.jumptime = 20.0;
+    player.jumpVel = player.rad/3;
   }
 }
 
@@ -173,7 +176,7 @@ function touchStarted() {
     score = 0;
   } else if (!(newGame) && !(player.jumping)) {
     player.jumping = true;
-    player.jumptime = 20.0;
+    player.jumpAcc = width/20;
   }
   return false;
 }
