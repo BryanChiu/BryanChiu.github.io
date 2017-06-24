@@ -79,7 +79,7 @@ function displayScore() {
   stroke(0);
   fill(255);
   //text(score, width/2, height/5);
-  text(windowWidth.toString+","+windowHeight.toString, width/2, height/5);
+  text(windowWidth.toString()+","+windowHeight.toString(), width/2, height/5);
 }
 
 function Character() {
