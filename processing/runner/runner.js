@@ -10,6 +10,7 @@ var score;
 function setup() {
   var canvas = createCanvas((windowWidth>1400 ? 1400 : windowWidth), (windowHeight>1400 ? 1400 : windowHeight));
   //parent.canvas = "sketch-holder";
+  //hi
 
   obstList = [];
   for (var i = 0; i<5; i++) {

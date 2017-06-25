@@ -1,0 +1,6 @@
+#!/bin/bash
+git add -A
+wait
+git commit -m "$1 $now"
+wait
+git push
