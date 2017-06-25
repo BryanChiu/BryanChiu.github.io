@@ -8,7 +8,7 @@ var obstCount;
 var score;
 
 function setup() {
-  var canvas = createCanvas(windowWidth, (windowHeight>1300 ? 1300 : windowHeight));
+  var canvas = createCanvas(windowWidth, (windowHeight>1400 ? 1400 : windowHeight));
   //parent.canvas = "sketch-holder";
   //hi
 
@@ -93,8 +93,8 @@ function Character() {
 
   this.motion = function() {
     if (this.jumping) {
-      this.loc.y-=this.jumpVel;
       this.jumpVel+=this.jumpAcc;
+      this.loc.y-=this.jumpVel;
       if (this.loc.y+this.rad>=ground.y) {
         this.jumping = false;
         this.loc.y = ground.y-this.rad;
