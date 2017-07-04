@@ -8,7 +8,7 @@ var obstCount;
 var score;
 
 function setup() {
-  var canvas = createCanvas(windowWidth, (windowHeight>1340 ? 1350 : windowHeight));
+  var canvas = createCanvas(windowWidth, (windowHeight>1350 ? 1350 : windowHeight));
   //parent.canvas = "sketch-holder";
   //hi
 

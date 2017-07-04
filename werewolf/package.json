@@ -1,0 +1,19 @@
+{
+  "name": "werewolf",
+  "version": "1.0.0",
+  "description": "werewolf game",
+  "main": "werewolf_server.js)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node werewolf_server.js"
+  },
+  "keywords": [
+    "werewolf"
+  ],
+  "author": "Bryan Chiu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "socket.io": "^2.0.3"
+  }
+}
