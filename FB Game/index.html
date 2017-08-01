@@ -1,0 +1,29 @@
+<html>
+<head>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.10/p5.js"></script>
+</head>
+
+<body>
+	<script>
+	  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId            : '1645700972108668',
+	      autoLogAppEvents : true,
+	      xfbml            : true,
+	      version          : 'v2.10'
+	    });
+	    FB.AppEvents.logPageView();
+	  };
+
+	  (function(d, s, id){
+	     var js, fjs = d.getElementsByTagName(s)[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement(s); js.id = id;
+	     js.src = "//connect.facebook.net/en_US/sdk.js";
+	     fjs.parentNode.insertBefore(js, fjs);
+	   }(document, 'script', 'facebook-jssdk'));
+	</script>
+	<script src="assets/ssclean.js"></script>
+  	<!--<div id='sketch-holder' style="width: 900px; margin: auto"></div>-->
+</body>
+</html>
