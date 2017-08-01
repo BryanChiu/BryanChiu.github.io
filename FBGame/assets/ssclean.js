@@ -27,7 +27,7 @@ function preload() {
 
 function setup() {
   var canvas = createCanvas(900, 600);
-  canvas.parent('sketch-holder');
+  //canvas.parent('sketch-holder');
   imageMode(CENTER);
   textFont("Trebuchet MS");
   display = "FIRST";
