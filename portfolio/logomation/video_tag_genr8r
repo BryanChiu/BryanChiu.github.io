@@ -1,0 +1,8 @@
+#!/bin/bash
+ls > filenames.txt
+sed -i '/.txt/d' filenames.txt
+sed -i '/.md/d' filenames.txt
+sed -i '/.gif/d' filenames.txt
+sed -i '/video_tag_genr8r/d' filenames.txt
+while read CMD; do echo "<video class=\"pfolioelem\" controls><source src=\"portfolio/logomation/$CMD\" type=\"video/mp4\"></video>" >> video_tags.txt; done < "filenames.txt"
+rm filenames.txt
