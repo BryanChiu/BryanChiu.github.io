@@ -76,6 +76,7 @@ hr.star-primary:after {
 }
 .pfolioelem {
 	max-width: 66%;
+	width: 66%;
 	height: auto;
 	width: auto\9;
 	margin:0 auto
