@@ -1,7 +1,0 @@
-#!/bin/bash
-ls > filenames.txt
-sed -i '/.txt/d' filenames.txt
-sed -i '/.md/d' filenames.txt
-sed -i '/image_tag_genr8r/d' filenames.txt
-while read CMD; do echo "<img src=\"portfolio/photography/$CMD\" class=\"img-responsive pfolioelem\">" >> image_tags.txt; done < "filenames.txt"
-rm filenames.txt
