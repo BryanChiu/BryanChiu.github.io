@@ -262,8 +262,8 @@ void runGeneration() {
       if (dot.fuel>0) {
         dot.control(updateTimer);
       }
-      dot.move();
       dot.display();
+      dot.move();      
       
       if (updateTimer>maxFuel+10 && !dot.testComplete) {
         dot.testOrbit();
