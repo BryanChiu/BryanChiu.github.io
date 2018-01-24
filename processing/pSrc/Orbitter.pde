@@ -362,17 +362,25 @@ class Dot {
 
   void force(int engines) {
     float boost = 1;
+    PVector forceVec;
     if (engines==1) { // left
-      this.vel.add(new PVector(this.vel.y, -this.vel.x).setMag(boost));
+      forceVec = new PVector(this.vel.y, -this.vel.x);
+      forceVec.setMag(boost);
+      this.vel.add(forceVec);
     } else if (engines==2) { // up
-      this.vel.add(new PVector(this.vel.x, this.vel.y).setMag(boost));
+      forceVec = new PVector(this.vel.x, this.vel.y);
+      forceVec.setMag(boost);
+      this.vel.add(forceVec);
     } else if (engines==3) { // right
-      this.vel.add(new PVector(-this.vel.y, this.vel.x).setMag(boost));
+      forceVec = new PVector(-this.vel.y, this.vel.x);
+      forceVec.setMag(boost);
+      this.vel.add(forceVec);
     }       
   }
   
   void testOrbit() {
-    PVector currentOrbit = new PVector(this.pos.x-planetPos.x, this.pos.y-planetPos.y).normalize();
+    PVector currentOrbit = new PVector(this.pos.x-planetPos.x, this.pos.y-planetPos.y);
+    currentOrbit.normalize();
     
     float distToPlanet = dist(this.pos.x, this.pos.y, planetPos.x, planetPos.y);
     orbDist.add(distToPlanet);
