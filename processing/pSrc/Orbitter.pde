@@ -295,7 +295,8 @@ class Dot {
   void move() {    
     PVector toPlanet = new PVector(planetPos.x-this.pos.x, planetPos.y-this.pos.y);
     toPlanet.normalize();
-    this.vel.add(toPlanet.mult(gravAltitude(PVector.dist(this.pos, planetPos))));
+    toPlanet.mult(gravAltitude(PVector.dist(this.pos, planetPos)));
+    this.vel.add(toPlanet);
     this.pos.add(this.vel);
     
     this.fuel--;
