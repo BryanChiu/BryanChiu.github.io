@@ -91,169 +91,6 @@ void draw() {
   text("Run gen for 30 secs: "+str(watchGen), width-5, 5);
 }
 
-class Dot {
-  int id;
-  int rad = 5;
-  PVector pos;
-  PVector vel;
-  boolean dead;
-  int life;
-  int fuel;
-  ArrayList<Integer> DNA = new ArrayList<Integer>();
-  
-  ArrayList<Float> orbDist = new ArrayList<Float>();
-  PVector beginOrbit;
-  float beginDist;
-  float avgDist;
-  float minDist;
-  float maxDist;
-  float weight;
-  boolean halfOrbit = false;
-  boolean testComplete = false;
-  
-  Dot(int id) {
-    this.id = id;
-    this.pos = new PVector(random(-10,10), random(-10,10));
-    this.vel = new PVector(this.pos.x, this.pos.y).setMag(0.001);
-    this.pos.setMag(this.rad+planetRad);
-    this.pos.add(width/2, height/2);
-    this.dead = false;
-    this.life = 0;
-    this.avgDist = 0;
-  }
-  
-  void setFuel() {
-    if (random(1)<randFuelProb && this.id!=0) {
-      this.fuel = int(random(15, maxFuel));
-    } else {
-      this.fuel = this.DNA.size();
-    }
-  }
-  
-  void move() {    
-    PVector toPlanet = new PVector(planetPos.x-this.pos.x, planetPos.y-this.pos.y);
-    toPlanet.normalize();
-    this.vel.add(toPlanet.mult(gravAltitude(PVector.dist(this.pos, planetPos))));
-    this.pos.add(this.vel);
-    
-    this.fuel--;
-    if (this.fuel==0) {
-      cutDNA();
-    }
-    this.life++;
-    genOldest = this.life;
-
-    genRunning=true;
-    
-    collisionTest();
-    
-  }
-  
-  void collisionTest() {
-    if (updateTimer>0 && (PVector.dist(this.pos, planetPos)<=this.rad+planetRad || 
-    dist(this.pos.x, this.pos.y, width/2, height/2)>width)) {
-      this.dead = true;
-      cutDNA();
-    }
-  }
-
-  void control(int gene) {
-    int engines;
-    if (gene<this.DNA.size() && (random(1)>mutationProb || this.id==0)) {
-    //if (gene<this.DNA.size()) {
-      engines = this.DNA.get(gene);
-    } else {
-      engines = floor(random(6));
-      switch (engines) {
-      case 0: // substitution
-      case 1:
-      case 2:
-      case 3:
-        if (gene<this.DNA.size()) {
-          this.DNA.remove(gene);
-        }
-        this.DNA.add(gene, engines);
-        break;
-      case 4: // insertion
-        engines = floor(random(3));
-        this.DNA.add(gene, engines);
-        this.DNA.add(gene, engines);
-        this.DNA.add(gene, engines);
-        engines = this.DNA.get(gene);
-        break;
-      case 5: // deletion
-        if (gene+3<this.DNA.size()) {
-          this.DNA.remove(gene);
-          this.DNA.remove(gene);
-          this.DNA.remove(gene);
-          engines = this.DNA.get(gene);
-        } else {
-          engines = floor(random(3));
-          this.DNA.add(gene, engines);
-        }
-        break;
-      }
-    }
-    force(engines);
-  }
-
-  void force(int engines) {
-    float boost = 1;
-    if (engines==1) { // left
-      this.vel.add(new PVector(this.vel.y, -this.vel.x).setMag(boost));
-    } else if (engines==2) { // up
-      this.vel.add(new PVector(this.vel.x, this.vel.y).setMag(boost));
-    } else if (engines==3) { // right
-      this.vel.add(new PVector(-this.vel.y, this.vel.x).setMag(boost));
-    }       
-  }
-  
-  void testOrbit() {
-    PVector currentOrbit = new PVector(this.pos.x-planetPos.x, this.pos.y-planetPos.y).normalize();
-    
-    float distToPlanet = dist(this.pos.x, this.pos.y, planetPos.x, planetPos.y);
-    orbDist.add(distToPlanet);
-    this.avgDist+=distToPlanet;
-    
-    if (distToPlanet>maxDist) {
-      maxDist = distToPlanet;
-    } else if (distToPlanet<minDist) {
-      minDist = distToPlanet;
-    }
-    
-    if (PVector.angleBetween(this.beginOrbit, currentOrbit) > 2) {
-      this.halfOrbit = true;
-    } else if (this.halfOrbit && beginDist-distToPlanet<5) {
-      this.avgDist /= this.orbDist.size();
-      
-      float range = maxDist - minDist;
-      weight = 0.5*avgDist + 0.5*(470.0-range);
-      
-      this.testComplete = true;
-      if (this.weight>genOptimal) {
-        genOptimal = this.weight;
-      }
-    }
-    
-    genTesting = true;
-  }
-
-  void cutDNA() {
-    if (updateTimer+1<DNA.size()) {
-      this.DNA.subList(updateTimer+1, this.DNA.size()).clear();
-    }
-  } 
-  
-  void display() {
-    fill(255, 255-this.id/4, this.id/4);
-    ellipse(this.pos.x, this.pos.y, this.rad*2, this.rad*2);
-    if (this.dead) {
-      fill(255);
-      ellipse(this.pos.x, this.pos.y, this.rad*4, this.rad*4);
-    }
-  }
-}
-
 void runGeneration() {
   genRunning = false;
   genTesting = false;
@@ -262,8 +99,8 @@ void runGeneration() {
       if (dot.fuel>0) {
         dot.control(updateTimer);
       }
+      dot.move();
       dot.display();
-      dot.move();      
       
       if (updateTimer>maxFuel+10 && !dot.testComplete) {
         dot.testOrbit();
@@ -413,6 +250,170 @@ ArrayList<Integer> Crossover(ArrayList<Integer> dad, ArrayList<Integer> mom) {
     }
   }
   return childDNA;
+}
+  
+class Dot {
+  int id;
+  int rad = 5;
+  PVector pos;
+  PVector vel;
+  boolean dead;
+  int life;
+  int fuel;
+  ArrayList<Integer> DNA = new ArrayList<Integer>();
+  
+  ArrayList<Float> orbDist = new ArrayList<Float>();
+  PVector beginOrbit;
+  float beginDist;
+  float avgDist;
+  float minDist;
+  float maxDist;
+  float weight;
+  boolean halfOrbit = false;
+  boolean testComplete = false;
+  
+  Dot(int id) {
+    this.id = id;
+    this.pos = new PVector(random(-10,10), random(-10,10));
+    this.vel = new PVector(this.pos.x, this.pos.y);
+    this.vel.setMag(0.001);
+    this.pos.setMag(this.rad+planetRad);
+    this.pos.add(width/2, height/2);
+    this.dead = false;
+    this.life = 0;
+    this.avgDist = 0;
+  }
+  
+  void setFuel() {
+    if (random(1)<randFuelProb && this.id!=0) {
+      this.fuel = int(random(15, maxFuel));
+    } else {
+      this.fuel = this.DNA.size();
+    }
+  }
+  
+  void move() {    
+    PVector toPlanet = new PVector(planetPos.x-this.pos.x, planetPos.y-this.pos.y);
+    toPlanet.normalize();
+    this.vel.add(toPlanet.mult(gravAltitude(PVector.dist(this.pos, planetPos))));
+    this.pos.add(this.vel);
+    
+    this.fuel--;
+    if (this.fuel==0) {
+      cutDNA();
+    }
+    this.life++;
+    genOldest = this.life;
+
+    genRunning=true;
+    
+    collisionTest();
+    
+  }
+  
+  void collisionTest() {
+    if (updateTimer>0 && (PVector.dist(this.pos, planetPos)<=this.rad+planetRad || 
+    dist(this.pos.x, this.pos.y, width/2, height/2)>width)) {
+      this.dead = true;
+      cutDNA();
+    }
+  }
+
+  void control(int gene) {
+    int engines;
+    if (gene<this.DNA.size() && (random(1)>mutationProb || this.id==0)) {
+    //if (gene<this.DNA.size()) {
+      engines = this.DNA.get(gene);
+    } else {
+      engines = floor(random(6));
+      switch (engines) {
+      case 0: // substitution
+      case 1:
+      case 2:
+      case 3:
+        if (gene<this.DNA.size()) {
+          this.DNA.remove(gene);
+        }
+        this.DNA.add(gene, engines);
+        break;
+      case 4: // insertion
+        engines = floor(random(3));
+        this.DNA.add(gene, engines);
+        this.DNA.add(gene, engines);
+        this.DNA.add(gene, engines);
+        engines = this.DNA.get(gene);
+        break;
+      case 5: // deletion
+        if (gene+3<this.DNA.size()) {
+          this.DNA.remove(gene);
+          this.DNA.remove(gene);
+          this.DNA.remove(gene);
+          engines = this.DNA.get(gene);
+        } else {
+          engines = floor(random(3));
+          this.DNA.add(gene, engines);
+        }
+        break;
+      }
+    }
+    force(engines);
+  }
+
+  void force(int engines) {
+    float boost = 1;
+    if (engines==1) { // left
+      this.vel.add(new PVector(this.vel.y, -this.vel.x).setMag(boost));
+    } else if (engines==2) { // up
+      this.vel.add(new PVector(this.vel.x, this.vel.y).setMag(boost));
+    } else if (engines==3) { // right
+      this.vel.add(new PVector(-this.vel.y, this.vel.x).setMag(boost));
+    }       
+  }
+  
+  void testOrbit() {
+    PVector currentOrbit = new PVector(this.pos.x-planetPos.x, this.pos.y-planetPos.y).normalize();
+    
+    float distToPlanet = dist(this.pos.x, this.pos.y, planetPos.x, planetPos.y);
+    orbDist.add(distToPlanet);
+    this.avgDist+=distToPlanet;
+    
+    if (distToPlanet>maxDist) {
+      maxDist = distToPlanet;
+    } else if (distToPlanet<minDist) {
+      minDist = distToPlanet;
+    }
+    
+    if (PVector.angleBetween(this.beginOrbit, currentOrbit) > 2) {
+      this.halfOrbit = true;
+    } else if (this.halfOrbit && beginDist-distToPlanet<5) {
+      this.avgDist /= this.orbDist.size();
+      
+      float range = maxDist - minDist;
+      weight = 0.5*avgDist + 0.5*(470.0-range);
+      
+      this.testComplete = true;
+      if (this.weight>genOptimal) {
+        genOptimal = this.weight;
+      }
+    }
+    
+    genTesting = true;
+  }
+
+  void cutDNA() {
+    if (updateTimer+1<DNA.size()) {
+      this.DNA.subList(updateTimer+1, this.DNA.size()).clear();
+    }
+  } 
+  
+  void display() {
+    fill(255, 255-this.id/4, this.id/4);
+    ellipse(this.pos.x, this.pos.y, this.rad*2, this.rad*2);
+    if (this.dead) {
+      fill(255);
+      ellipse(this.pos.x, this.pos.y, this.rad*4, this.rad*4);
+    }
+  }
 }
 
 float gravAltitude(float dist) {
