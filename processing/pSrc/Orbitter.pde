@@ -79,7 +79,7 @@ void draw() {
   textAlign(LEFT, BOTTOM);
   textSize(14);
   text("LifeTimer: "+str(updateTimer), 5, height-30);
-  text("Highest weight: "+String.format("%.4f", speciesMaxWeight), 5, height-5);
+  text(("Highest weight: "+str(speciesMaxWeight)).substring(0, min(str(speciesMaxWeight).length()+16, 24)), 5, height-5);
   
   textAlign(LEFT, TOP);
   textSize(10);
