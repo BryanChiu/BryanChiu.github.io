@@ -40,6 +40,9 @@ void resetup() {
     doots.clear();
   }
   doots = new ArrayList<Dot>();
+  for (int i=0; i<popSize; i++) {
+    doots.add(new Dot(i));
+  }
   
   asexualBreed();
   genRunning = true;
