@@ -9,8 +9,8 @@ boolean genRunning;
 boolean genTesting;
 int genCount;
 int genOldest;
-float genOptimal;
-float speciesMaxWeight;
+float genMaxFitness;
+float speciesMaxFitness;
 int updateTimer;
 
 float randFuelProb;
@@ -33,8 +33,8 @@ void resetup() {
   
   updateTimer = 0;
   genCount = 0;
-  speciesMaxWeight = 0;
-  genOptimal= -1;
+  speciesMaxFitness = 0;
+  genMaxFitness= -1;
   
   if (doots!=null) {
     doots.clear();
@@ -79,7 +79,7 @@ void draw() {
   textAlign(LEFT, BOTTOM);
   textSize(14);
   text("LifeTimer: "+str(updateTimer), 5, height-30);
-  text(("Highest weight: "+str(speciesMaxWeight)).substring(0, min(str(speciesMaxWeight).length()+16, 24)), 5, height-5);
+  text(("Highest fitness: "+str(speciesMaxFitness)).substring(0, min(str(speciesMaxFitness).length()+17, 25)), 5, height-5);
   
   textAlign(LEFT, TOP);
   textSize(10);
@@ -123,7 +123,7 @@ void resetGeneration() {
   
   updateTimer = 0;
   genOldest = 0;
-  genOptimal = -1;
+  genMaxFitness = -1;
   genCount++;
   genRunning = true;
   crossCount = 0;
@@ -132,7 +132,7 @@ void resetGeneration() {
 ArrayList<Integer> getTopDNA() {
   ArrayList<Integer> topDNA = new ArrayList<Integer>();
   for (int i=0; i<doots.size(); i++) {
-    if ((doots.get(i).life==genOldest && doots.get(i).dead) || (doots.get(i).weight==genOptimal)) {
+    if ((doots.get(i).life==genOldest && doots.get(i).dead) || (doots.get(i).fitness==genMaxFitness)) {
       print(str(genCount)+": ");
       for (int gene : doots.get(i).DNA) {
         topDNA.add(gene);
@@ -147,11 +147,11 @@ ArrayList<Integer> getTopDNA() {
         print(str(genCount)+": ");
         print("Distance to planet: mean: "+str(doots.get(i).avgDist));
         print(", range: "+str(doots.get(i).range));
-        println(", weight: "+str(doots.get(i).weight));
+        println(", fitness: "+str(doots.get(i).fitness));
       }
       
-      if (doots.get(i).weight>speciesMaxWeight) {
-        speciesMaxWeight = doots.get(i).weight;
+      if (doots.get(i).fitness>speciesMaxFitness) {
+        speciesMaxFitness = doots.get(i).fitness;
       }
       
       doots.remove(i);
@@ -270,7 +270,7 @@ class Dot {
   float minDist;
   float avgDist;
   float range;
-  float weight;
+  float fitness;
   boolean halfOrbit = false;
   boolean testComplete = false;
   
@@ -400,11 +400,11 @@ class Dot {
       this.avgDist /= this.orbDist.size();
       
       this.range = maxDist - minDist;
-      weight = 0.5*avgDist + 0.5*(470.0-this.range);
+      fitness = 0.5*avgDist + 0.5*(470.0-this.range);
       
       this.testComplete = true;
-      if (this.weight>genOptimal) {
-        genOptimal = this.weight;
+      if (this.fitness>genMaxFitness) {
+        genMaxFitness = this.fitness;
       }
     }
     
