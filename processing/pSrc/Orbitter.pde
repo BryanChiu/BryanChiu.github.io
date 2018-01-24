@@ -75,11 +75,11 @@ void draw() {
   fill(0);
   textAlign(RIGHT, BOTTOM);
   textSize(20);
-  text("Generation: "+Integer.toString(genCount), width-5, height-5);
+  text("Generation: "+str(genCount), width-5, height-5);
   textAlign(LEFT, BOTTOM);
   textSize(14);
-  text("LifeTimer: "+Integer.toString(updateTimer), 5, height-30);
-  text("Highest weight: "+Float.toString(speciesMaxWeight), 5, height-5);
+  text("LifeTimer: "+str(updateTimer), 5, height-30);
+  text("Highest weight: "+str(speciesMaxWeight), 5, height-5);
   
   textAlign(LEFT, TOP);
   textSize(10);
