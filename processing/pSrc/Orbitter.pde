@@ -1,5 +1,3 @@
-import java.util.Collections;
-
 float gravity = 1;
 ArrayList<Dot> doots;
 int popSize = 1000;
@@ -110,6 +108,8 @@ void runGeneration() {
         dot.beginOrbit = new PVector(dot.pos.x-planetPos.x, dot.pos.y-planetPos.y);
         dot.beginOrbit.normalize();
         dot.beginDist = dist(dot.pos.x, dot.pos.y, planetPos.x, planetPos.y);
+        dot.maxDist = dot.beginDist;
+        dot.minDist = dot.beginDist;
       }
     }
   }
@@ -146,7 +146,7 @@ ArrayList<Integer> getTopDNA() {
       if (doots.get(i).testComplete) {
         print(str(genCount)+": ");
         print("Distance to planet: mean: "+str(doots.get(i).avgDist));
-        print(", range: "+str(doots.get(i).orbDist.get(doots.get(i).orbDist.size()-1) - doots.get(i).orbDist.get(0)));
+        print(", range: "+str(doots.get(i).range));
         println(", weight: "+str(doots.get(i).weight));
       }
       
@@ -266,7 +266,10 @@ class Dot {
   ArrayList<Float> orbDist = new ArrayList<Float>();
   PVector beginOrbit;
   float beginDist;
+  float maxDist;
+  float minDist;
   float avgDist;
+  float range;
   float weight;
   boolean halfOrbit = false;
   boolean testComplete = false;
@@ -385,15 +388,19 @@ class Dot {
     orbDist.add(distToPlanet);
     this.avgDist+=distToPlanet;
     
+    if (distToPlanet>maxDist) {
+      maxDist = distToPlanet;
+    } else if (distToPlanet<minDist) {
+      minDist = distToPlanet;
+    }
+    
     if (PVector.angleBetween(this.beginOrbit, currentOrbit) > 2) {
       this.halfOrbit = true;
     } else if (this.halfOrbit && beginDist-distToPlanet<5) {
       this.avgDist /= this.orbDist.size();
       
-      Collections.sort(this.orbDist);
-      
-      float range = this.orbDist.get(this.orbDist.size()-1) - this.orbDist.get(0);
-      weight = 0.5*avgDist + 0.5*(470.0-range);
+      this.range = maxDist - minDist;
+      weight = 0.5*avgDist + 0.5*(470.0-this.range);
       
       this.testComplete = true;
       if (this.weight>genOptimal) {
