@@ -91,167 +91,6 @@ void draw() {
   text("Run gen for 30 secs: "+str(watchGen), width-5, 5);
 }
 
-void runGeneration() {
-  genRunning = false;
-  genTesting = false;
-  for (Dot dot : doots) {
-    if (!dot.dead) {
-      if (dot.fuel>0) {
-        dot.control(updateTimer);
-      }
-      dot.move();
-      dot.display();
-      
-      if (updateTimer>maxFuel+10 && !dot.testComplete) {
-        dot.testOrbit();
-      } else if (updateTimer == maxFuel+10) {
-        dot.beginOrbit = new PVector(dot.pos.x-planetPos.x, dot.pos.y-planetPos.y).normalize();
-        dot.beginDist = dist(dot.pos.x, dot.pos.y, planetPos.x, planetPos.y);
-        dot.maxDist = dot.beginDist;
-        dot.minDist = dot.beginDist;
-      }
-    }
-  }
-  
-  updateTimer++;
-}
-
-void resetGeneration() {
-  //asexualBreed();
-  Breed();
-  
-  updateTimer = 0;
-  genOldest = 0;
-  genOptimal = -1;
-  genCount++;
-  genRunning = true;
-  crossCount = 0;
-}
-
-ArrayList<Integer> getTopDNA() {
-  ArrayList<Integer> topDNA = new ArrayList<Integer>();
-  for (int i=0; i<doots.size(); i++) {
-    if ((doots.get(i).life==genOldest && doots.get(i).dead) || (doots.get(i).weight==genOptimal)) {
-      print(str(genCount)+": ");
-      for (int gene : doots.get(i).DNA) {
-        topDNA.add(gene);
-        print(gene);
-        if (topDNA.size()>=doots.get(i).life) {
-          break;
-        }
-      }
-      println(" ");
-      
-      if (doots.get(i).testComplete) {
-        print(str(genCount)+": ");
-        print("Distance to planet: mean: "+str(doots.get(i).avgDist));
-        print(", range: "+str(doots.get(i).orbDist.get(doots.get(i).orbDist.size()-1) - doots.get(i).orbDist.get(0)));
-        println(", weight: "+str(doots.get(i).weight));
-      }
-      
-      if (doots.get(i).weight>speciesMaxWeight) {
-        speciesMaxWeight = doots.get(i).weight;
-      }
-      
-      doots.remove(i);
-  
-      break;
-    }
-  }
-    
-  return topDNA;
-}
-  
-
-void asexualBreed() {
-  ArrayList<Integer> topDNA = getTopDNA();
-    
-  doots.clear();
-
-  for (int i=0; i<popSize; i++) {
-    doots.add(new Dot(i));
-    for (int gene : topDNA) {
-      doots.get(i).DNA.add(gene);
-    }
-  }
-  topDNA.clear();
-}
-
-void Breed() {
-  ArrayList< ArrayList<Integer> > parentDNA = new ArrayList< ArrayList<Integer> >();
-  int iter = 0;
-  
-  parentDNA.add(getTopDNA());
-  
-  while (parentDNA.size()<5 && iter<doots.size()) {
-    if (!doots.get(iter).dead && !(parentDNA.get(0).equals(doots.get(iter).DNA))) {
-      ArrayList<Integer> DNA = new ArrayList<Integer>();
-      for (int gene : doots.get(iter).DNA) {
-        DNA.add(gene);
-      }
-      parentDNA.add(DNA);
-    }
-    iter++;
-  }
-  
-  doots.clear();
-  
-  if (parentDNA.size()==1) {
-    for (int i=0; i<popSize; i++) {
-      doots.add(new Dot(i));
-      for (int gene : parentDNA.get(0)) {
-        doots.get(i).DNA.add(gene);
-      }
-      doots.get(i).setFuel();
-    }
-    parentDNA.get(0).clear();
-  } else {
-    for (int i=0; i<popSize; i++) {
-      doots.add(new Dot(i));
-    }
-    for (int i=0; i<popSize; i++) {
-      if (i==0) {
-        for (int gene : parentDNA.get(0)) {
-          doots.get(0).DNA.add(gene);
-        }
-      } else {
-        for (int gene : Crossover(parentDNA.get(0), parentDNA.get(i%(parentDNA.size()-1)+1))) {
-          doots.get(i).DNA.add(gene);
-        }
-      }
-      doots.get(i).setFuel();
-    }
-  }
-  parentDNA.clear();
-}
-
-ArrayList<Integer> Crossover(ArrayList<Integer> dad, ArrayList<Integer> mom) {
-  ArrayList<Integer> childDNA = new ArrayList<Integer>();
-  boolean cross = false;
-  int iter = 0;
-  
-  while (iter<max(dad.size(), mom.size())) {
-    if (iter>=dad.size()) {
-      cross = true;
-    } else if (iter>=mom.size()) {
-      cross = false;
-    }
-    
-    if (!cross) {
-      childDNA.add(dad.get(iter));
-    } else {
-      childDNA.add(mom.get(iter));
-    }
-    
-    iter++;
-    if (random(1)<crossoverProb) {
-      cross = !cross;
-      crossCount++;
-    }
-  }
-  return childDNA;
-}
-  
 class Dot {
   int id;
   int rad = 5;
@@ -413,6 +252,167 @@ class Dot {
       ellipse(this.pos.x, this.pos.y, this.rad*4, this.rad*4);
     }
   }
+}
+
+void runGeneration() {
+  genRunning = false;
+  genTesting = false;
+  for (Dot dot : doots) {
+    if (!dot.dead) {
+      if (dot.fuel>0) {
+        dot.control(updateTimer);
+      }
+      dot.move();
+      dot.display();
+      
+      if (updateTimer>maxFuel+10 && !dot.testComplete) {
+        dot.testOrbit();
+      } else if (updateTimer == maxFuel+10) {
+        dot.beginOrbit = new PVector(dot.pos.x-planetPos.x, dot.pos.y-planetPos.y).normalize();
+        dot.beginDist = dist(dot.pos.x, dot.pos.y, planetPos.x, planetPos.y);
+        dot.maxDist = dot.beginDist;
+        dot.minDist = dot.beginDist;
+      }
+    }
+  }
+  
+  updateTimer++;
+}
+
+void resetGeneration() {
+  //asexualBreed();
+  Breed();
+  
+  updateTimer = 0;
+  genOldest = 0;
+  genOptimal = -1;
+  genCount++;
+  genRunning = true;
+  crossCount = 0;
+}
+
+ArrayList<Integer> getTopDNA() {
+  ArrayList<Integer> topDNA = new ArrayList<Integer>();
+  for (int i=0; i<doots.size(); i++) {
+    if ((doots.get(i).life==genOldest && doots.get(i).dead) || (doots.get(i).weight==genOptimal)) {
+      print(str(genCount)+": ");
+      for (int gene : doots.get(i).DNA) {
+        topDNA.add(gene);
+        print(gene);
+        if (topDNA.size()>=doots.get(i).life) {
+          break;
+        }
+      }
+      println(" ");
+      
+      if (doots.get(i).testComplete) {
+        print(str(genCount)+": ");
+        print("Distance to planet: mean: "+str(doots.get(i).avgDist));
+        print(", range: "+str(doots.get(i).orbDist.get(doots.get(i).orbDist.size()-1) - doots.get(i).orbDist.get(0)));
+        println(", weight: "+str(doots.get(i).weight));
+      }
+      
+      if (doots.get(i).weight>speciesMaxWeight) {
+        speciesMaxWeight = doots.get(i).weight;
+      }
+      
+      doots.remove(i);
+  
+      break;
+    }
+  }
+    
+  return topDNA;
+}
+  
+
+void asexualBreed() {
+  ArrayList<Integer> topDNA = getTopDNA();
+    
+  doots.clear();
+
+  for (int i=0; i<popSize; i++) {
+    doots.add(new Dot(i));
+    for (int gene : topDNA) {
+      doots.get(i).DNA.add(gene);
+    }
+  }
+  topDNA.clear();
+}
+
+void Breed() {
+  ArrayList< ArrayList<Integer> > parentDNA = new ArrayList< ArrayList<Integer> >();
+  int iter = 0;
+  
+  parentDNA.add(getTopDNA());
+  
+  while (parentDNA.size()<5 && iter<doots.size()) {
+    if (!doots.get(iter).dead && !(parentDNA.get(0).equals(doots.get(iter).DNA))) {
+      ArrayList<Integer> DNA = new ArrayList<Integer>();
+      for (int gene : doots.get(iter).DNA) {
+        DNA.add(gene);
+      }
+      parentDNA.add(DNA);
+    }
+    iter++;
+  }
+  
+  doots.clear();
+  
+  if (parentDNA.size()==1) {
+    for (int i=0; i<popSize; i++) {
+      doots.add(new Dot(i));
+      for (int gene : parentDNA.get(0)) {
+        doots.get(i).DNA.add(gene);
+      }
+      doots.get(i).setFuel();
+    }
+    parentDNA.get(0).clear();
+  } else {
+    for (int i=0; i<popSize; i++) {
+      doots.add(new Dot(i));
+    }
+    for (int i=0; i<popSize; i++) {
+      if (i==0) {
+        for (int gene : parentDNA.get(0)) {
+          doots.get(0).DNA.add(gene);
+        }
+      } else {
+        for (int gene : Crossover(parentDNA.get(0), parentDNA.get(i%(parentDNA.size()-1)+1))) {
+          doots.get(i).DNA.add(gene);
+        }
+      }
+      doots.get(i).setFuel();
+    }
+  }
+  parentDNA.clear();
+}
+
+ArrayList<Integer> Crossover(ArrayList<Integer> dad, ArrayList<Integer> mom) {
+  ArrayList<Integer> childDNA = new ArrayList<Integer>();
+  boolean cross = false;
+  int iter = 0;
+  
+  while (iter<max(dad.size(), mom.size())) {
+    if (iter>=dad.size()) {
+      cross = true;
+    } else if (iter>=mom.size()) {
+      cross = false;
+    }
+    
+    if (!cross) {
+      childDNA.add(dad.get(iter));
+    } else {
+      childDNA.add(mom.get(iter));
+    }
+    
+    iter++;
+    if (random(1)<crossoverProb) {
+      cross = !cross;
+      crossCount++;
+    }
+  }
+  return childDNA;
 }
 
 float gravAltitude(float dist) {
