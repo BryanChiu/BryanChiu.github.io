@@ -1,26 +1,22 @@
-import java.util.Collections;
-
-boolean watchGen;
-
 float gravity = 1;
 ArrayList<Dot> doots;
+int popSize = 1000;
 PVector planetPos;
 int planetRad = 60;
 
+boolean watchGen;
 boolean genRunning;
 boolean genTesting;
-int updateTimer;
-int generationCount;
+int genCount;
 int genOldest;
 float genOptimal;
 float speciesMaxWeight;
-int maxFuel;
-int maxGenTime = 1800;
-int popSize = 1000;
+int updateTimer;
 
 float randFuelProb;
 float mutationProb;
 float crossoverProb;
+int maxFuel;
 int crossCount = 0;
 
 void setup() {
@@ -36,7 +32,7 @@ void resetup() {
   planetPos = new PVector(width/2, height/2);
   
   updateTimer = 0;
-  generationCount = 0;
+  genCount = 0;
   speciesMaxWeight = 0;
   genOptimal= -1;
   
@@ -63,7 +59,7 @@ void draw() {
   fill(100, 100, 255);
   ellipse(planetPos.x, planetPos.y, planetRad*2, planetRad*2);
   
-  if (genRunning && updateTimer<maxGenTime && (updateTimer<=maxFuel+11 || genTesting || watchGen)) {
+  if (genRunning && (updateTimer<=maxFuel+11 || genTesting || watchGen)) {
     runGeneration();
   } else {
     resetGeneration();
@@ -76,7 +72,7 @@ void draw() {
   fill(0);
   textAlign(RIGHT, BOTTOM);
   textSize(20);
-  text("Generation: "+Integer.toString(generationCount), width-5, height-5);
+  text("Generation: "+Integer.toString(genCount), width-5, height-5);
   textAlign(LEFT, BOTTOM);
   textSize(14);
   text("LifeTimer: "+Integer.toString(updateTimer), 5, height-30);
@@ -108,6 +104,8 @@ void runGeneration() {
       } else if (updateTimer == maxFuel+10) {
         dot.beginOrbit = new PVector(dot.pos.x-planetPos.x, dot.pos.y-planetPos.y).normalize();
         dot.beginDist = dist(dot.pos.x, dot.pos.y, planetPos.x, planetPos.y);
+        dot.maxDist = dot.beginDist;
+        dot.minDist = dot.beginDist;
       }
     }
   }
@@ -122,7 +120,7 @@ void resetGeneration() {
   updateTimer = 0;
   genOldest = 0;
   genOptimal = -1;
-  generationCount++;
+  genCount++;
   genRunning = true;
   crossCount = 0;
 }
@@ -131,7 +129,7 @@ ArrayList<Integer> getTopDNA() {
   ArrayList<Integer> topDNA = new ArrayList<Integer>();
   for (int i=0; i<doots.size(); i++) {
     if ((doots.get(i).life==genOldest && doots.get(i).dead) || (doots.get(i).weight==genOptimal)) {
-      print(str(generationCount)+": ");
+      print(str(genCount)+": ");
       for (int gene : doots.get(i).DNA) {
         topDNA.add(gene);
         print(gene);
@@ -142,7 +140,7 @@ ArrayList<Integer> getTopDNA() {
       println(" ");
       
       if (doots.get(i).testComplete) {
-        print(str(generationCount)+": ");
+        print(str(genCount)+": ");
         print("Distance to planet: mean: "+str(doots.get(i).avgDist));
         print(", range: "+str(doots.get(i).orbDist.get(doots.get(i).orbDist.size()-1) - doots.get(i).orbDist.get(0)));
         println(", weight: "+str(doots.get(i).weight));
@@ -265,6 +263,8 @@ class Dot {
   PVector beginOrbit;
   float beginDist;
   float avgDist;
+  float minDist;
+  float maxDist;
   float weight;
   boolean halfOrbit = false;
   boolean testComplete = false;
@@ -373,14 +373,18 @@ class Dot {
     orbDist.add(distToPlanet);
     this.avgDist+=distToPlanet;
     
+    if (distToPlanet>maxDist) {
+      maxDist = distToPlanet;
+    } else if (distToPlanet<minDist) {
+      minDist = distToPlanet;
+    }
+    
     if (PVector.angleBetween(this.beginOrbit, currentOrbit) > 2) {
       this.halfOrbit = true;
     } else if (this.halfOrbit && beginDist-distToPlanet<5) {
       this.avgDist /= this.orbDist.size();
       
-      Collections.sort(this.orbDist);
-      
-      float range = this.orbDist.get(this.orbDist.size()-1) - this.orbDist.get(0);
+      float range = maxDist - minDist;
       weight = 0.5*avgDist + 0.5*(470.0-range);
       
       this.testComplete = true;
