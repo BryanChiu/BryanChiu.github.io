@@ -53,7 +53,7 @@ void newGame() {
     balls.get(i).col = cols[i%8]; //give balls colour
     if (i%8==0) { //give balls pattern
       balls.get(i).patt = "None";
-    } else if (i/8==0) {
+    } else if (int(i/8)==0) {
       balls.get(i).patt = "Solid";
     } else {
       balls.get(i).patt = "Stripe";
@@ -242,7 +242,8 @@ void ballSunk(int id) {
 void mouseReleased() {
   if (cueActivated) {
     cueActivated = false;
-    balls.get(0).vel = cueVel.copy().mult(0.2);
+    balls.get(0).vel = new PVector(cueVel.x, cueVel.y);
+    balls.get(0).vel.mult(0.2);
   }
   if (gameOver) {
     newGame();
