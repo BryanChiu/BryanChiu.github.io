@@ -24,9 +24,6 @@ PVector[] holes = new PVector[]{new PVector(100, 100), new PVector(600, 90), new
 int holeD = 75;
 color[] cols = new color[]{color(10), color(200, 200, 0), color(0, 50, 200), color(200, 0, 0), 
   color(80, 0, 80), color(200, 140, 0), color(0, 180, 0), color(120, 0, 0)};
-enum Pattern {
-  SOLID, STRIPE, NONE
-};
 boolean cueReady; //cue ball can be hit (no balls moving)
 boolean cueActivated; //cue ball has been clicked on, not shot yet
 PVector cueVel; //velocity of cuestick to be transferred to cue ball
@@ -34,8 +31,8 @@ int solidScore;
 int stripeScore;
 boolean solidIn;
 boolean stripeIn;
-Pattern turn;
-Pattern firstContact;
+String turn;
+String firstContact;
 boolean turnDetermined;
 boolean scratch;
 boolean gameOver;
@@ -55,11 +52,11 @@ void newGame() {
     balls.get(i).id = i; //give balls number id
     balls.get(i).col = cols[i%8]; //give balls colour
     if (i%8==0) { //give balls pattern
-      balls.get(i).patt = Pattern.NONE;
+      balls.get(i).patt = "None";
     } else if (i/8==0) {
-      balls.get(i).patt = Pattern.SOLID;
+      balls.get(i).patt = "Solid";
     } else {
-      balls.get(i).patt = Pattern.STRIPE;
+      balls.get(i).patt = "Stripe";
     }
   }
   balls.get(0).col = color(255);
@@ -69,8 +66,8 @@ void newGame() {
   stripeScore = 0;
   solidIn = false;
   stripeIn = false;
-  turn = Pattern.NONE;
-  firstContact = Pattern.NONE;
+  turn = "None";
+  firstContact = "None";
   turnDetermined = false;
   scratch = false;
   gameOver = false;
@@ -122,9 +119,9 @@ void drawBoard() {
   text("Solids: "+Integer.toString(solidScore), width-120, height-70);
   text("Stripes: "+Integer.toString(stripeScore), width-120, height-40);
   textSize(10);
-  if (turn==Pattern.SOLID) {
+  if (turn=="Solid") {
     text("TURN", width-160, height-70);
-  } else if (turn==Pattern.STRIPE) {
+  } else if (turn=="Stripe") {
     text("TURN", width-160, height-40);
   }
 }
@@ -147,30 +144,30 @@ void ballsInMotion() {
 }
 
 void determineTurn() { //determine whose turn it is
-  if (turn==Pattern.NONE && solidIn && !(stripeIn)) {
-    turn = Pattern.SOLID;
-  } else if (turn==Pattern.NONE && stripeIn && !(solidIn)) {
-    turn = Pattern.STRIPE;
-  } else if (turn==Pattern.STRIPE && (!(stripeIn) || !(firstContact==Pattern.STRIPE))) {
-    if (!(firstContact==Pattern.STRIPE)) {
+  if (turn=="None" && solidIn && !(stripeIn)) {
+    turn = "Solid";
+  } else if (turn=="None" && stripeIn && !(solidIn)) {
+    turn = "Stripe";
+  } else if (turn=="Stripe" && (!(stripeIn) || !(firstContact=="Stripe"))) {
+    if (!(firstContact=="Stripe")) {
       scratch=true;
       if (balls.get(0).id==0) {
         balls.remove(0);
       }
     }
-    turn = Pattern.SOLID;
-  } else if (turn==Pattern.SOLID && (!(solidIn) || !(firstContact==Pattern.SOLID))) {
-    if (!(firstContact==Pattern.SOLID)) {
+    turn = "Solid";
+  } else if (turn=="Solid" && (!(solidIn) || !(firstContact=="Solid"))) {
+    if (!(firstContact=="Solid")) {
       scratch=true;
       if (balls.get(0).id==0) {
         balls.remove(0);
       }
     }
-    turn = Pattern.STRIPE;
+    turn = "Stripe";
   }
   solidIn = false;
   stripeIn = false;
-  firstContact = Pattern.NONE;
+  firstContact = "None";
   turnDetermined = true;
 }
 
@@ -192,7 +189,7 @@ void resetCueBall() { //reset cue ball after cue ball sunk
     scratch = false;
     balls.add(0, new Ball());
     balls.get(0).id = 0;
-    balls.get(0).patt = Pattern.NONE;
+    balls.get(0).patt = "None";
     balls.get(0).cen = new PVector(mouseX, mouseY);
     balls.get(0).col = color(255);
   }
@@ -213,19 +210,19 @@ void ballSunk(int id) {
     scratch=true;
     break;
   case 8: //8 ball sunk
-    if (turn==Pattern.SOLID) {
+    if (turn=="Solid") {
       if (solidScore==7) { //solids wins
         solidScore++;
-        turn = Pattern.SOLID;
+        turn = "Solid";
       } else {
-        turn = Pattern.STRIPE;
+        turn = "Stripe";
       }
     } else {
       if (stripeScore==7) { //stripes wins
         stripeScore++;
-        turn = Pattern.STRIPE;
+        turn = "Stripe";
       } else {
-        turn = Pattern.SOLID;
+        turn = "Solid";
       }
     }
     gameOver=true;
@@ -257,7 +254,7 @@ void gameOverTitle() {
   textAlign(CENTER, CENTER);
   textSize(120);
   text("GAME OVER", width/2, height/2-100);
-  if (turn==Pattern.SOLID) {
+  if (turn=="Solid") {
     text("Solids Win", width/2, height/2+100);
   } else {
     text("Stripes Win", width/2, height/2+100);
@@ -269,7 +266,7 @@ class Ball {
   float rad = d/2;
   PVector vel = new PVector(0, 0);
   int id;
-  Pattern patt;
+  String patt;
   color col;
   boolean inPlay = true;
 
@@ -307,11 +304,11 @@ class Ball {
           bawl.vel.y += ay;
           this.vel.mult(bounceFric);
           bawl.vel.mult(bounceFric);
-          if (firstContact==Pattern.NONE && this.id==0) {
+          if (firstContact=="None" && this.id==0) {
             if (bawl.id<8) {
-              firstContact = Pattern.SOLID;
+              firstContact = "Solid";
             } else if (bawl.id>8) {
-              firstContact = Pattern.STRIPE;
+              firstContact = "Stripe";
             }
           }
         }
@@ -336,7 +333,7 @@ class Ball {
     fill(255);
     ellipse(cen.x, cen.y, d, d);
     fill(col);
-    if (patt==Pattern.STRIPE) {
+    if (patt=="Stripe") {
       rect(cen.x-rad*0.75, cen.y-rad*0.7, d*.75, d*.7);
     } else {
       ellipse(cen.x, cen.y, d, d);
