@@ -116,8 +116,8 @@ void drawBoard() {
   fill(0);
   textAlign(LEFT, CENTER);
   textSize(20);
-  text("Solids: "+Integer.toString(solidScore), width-120, height-70);
-  text("Stripes: "+Integer.toString(stripeScore), width-120, height-40);
+  text("Solids: "+str(solidScore), width-120, height-70);
+  text("Stripes: "+str(stripeScore), width-120, height-40);
   textSize(10);
   if (turn=="Solid") {
     text("TURN", width-160, height-70);
