@@ -149,7 +149,7 @@ void determineTurn() { //determine whose turn it is
   } else if (turn=="None" && stripeIn && !(solidIn)) {
     turn = "Stripe";
   } else if (turn=="Stripe" && (!(stripeIn) || !(firstContact=="Stripe"))) {
-    if (!(firstContact=="Stripe")) {
+    if (firstContact!="Stripe" && stripeScore!=7) {
       scratch=true;
       if (balls.get(0).id==0) {
         balls.remove(0);
@@ -157,7 +157,7 @@ void determineTurn() { //determine whose turn it is
     }
     turn = "Solid";
   } else if (turn=="Solid" && (!(solidIn) || !(firstContact=="Solid"))) {
-    if (!(firstContact=="Solid")) {
+    if (firstContact!="Solid" && solidScore!=7) {
       scratch=true;
       if (balls.get(0).id==0) {
         balls.remove(0);
