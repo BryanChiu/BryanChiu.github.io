@@ -8,7 +8,6 @@ var canvasFrame;
 var dots;
 var dotsAssigned;
 var dotSize = 4;
-var dotSpeed = 1.1;
 
 function setup() {
   var canvas = createCanvas(600, 600);
@@ -19,10 +18,11 @@ function setup() {
   dropzone.dragLeave(unhighlight);
   dropzone.drop(gotFile, unhighlight);
 
-  pictResize = false;
-  pictUploaded = false;
+  pictResized = true;
+  pict = createImage(600, 600);
 
   dots = [];
+  initDots();
   dotArrayLength = 0;
   dotsAssigned = 0;
 }
@@ -36,10 +36,8 @@ function unhighlight() {
 }
 
 function gotFile(file) {
-  if (pict!=null) {
-    pict = null;
-    canvasFrame = null;
-  }
+  pict = null;
+  canvasFrame = null;
   document.getElementById("dropzone").innerHTML = "Processing file...this will take a few seconds";
   captureCanvas();
   pict = loadImage(file.data);
@@ -51,14 +49,13 @@ function captureCanvas() {
   canvasFrame = createImage(width, height);
   canvasFrame.loadPixels();
   loadPixels();
-  
+
   for (var i=0; i<pixels.length; i++) {
     canvasFrame.pixels[i] = pixels[i];
   }
-  
+
   canvasFrame.updatePixels();
 }
-  
 
 function resizeImage() {
   if (pict.width>pict.height) {
@@ -77,27 +74,26 @@ function draw() {
   strokeWeight(5);
   rect(0, 0, width, height);
   imageMode(CENTER);
-  if (pictUploaded) {
-    if (pict.get(0, 0)[3]!=0 && !pictResized) {
-      dotsAssigned = 0;
-      resizeImage();
-      makeDithered(pict, 1);
-      
-      if (dotsAssigned<dots.length) {
-        for (var i=dotsAssigned; i<dots.length; i++) {
-          var randomVec = createVector(random(-1, 1), random(-1, 1));
-          randomVec.setMag(425);
-          dots[i].assignDest(randomVec.x/scaleFactor+pict.width/2, randomVec.y/scaleFactor+pict.height/2);
-        }
+  if (pict.get(0, 0)[3]!=0 && !pictResized) {
+    dotsAssigned = 0;
+    resizeImage();
+    makeDithered(pict, 1);
+
+    if (dotsAssigned<dots.length) {
+      for (var i=dotsAssigned; i<dots.length; i++) {
+        var randIndex = floor(random(dotsAssigned));
+        var randomVec = createVector(dots[randIndex].dest.x, dots[randIndex].dest.y);
+        dots[i].assignDest(0, 0);
+        dots[i].dest = randomVec;
       }
-      
-      image(canvasFrame, width/2, height/2);
-      document.getElementById("dropzone").innerHTML = "Drop an image here";
-    } else if (pictResized) {
-      displayDots();
-    } else {
-      image(canvasFrame, width/2, height/2);
     }
+
+    image(canvasFrame, width/2, height/2);
+    document.getElementById("dropzone").innerHTML = "Drop an image here";
+  } else if (pictResized) {
+    displayDots();
+  } else {
+    image(canvasFrame, width/2, height/2);
   }
 }
 
@@ -155,10 +151,11 @@ function makeDithered(img, steps) {
           dots[dotsAssigned].assignDest(x, y);
           dotsAssigned++;
         } else {
-          var randomVec = createVector(random(-1, 1), random(-1, 1));
-          randomVec.setMag(425);
-          dots.push(new Dot(dotsAssigned, randomVec.x/scaleFactor+pict.width/2, randomVec.y/scaleFactor+pict.height/2));
-          dots[dotsAssigned].assignDest(x, y);
+          var randIndex = floor(random(dots.length));
+          var randomVec = createVector(dots[randIndex].pos.x, dots[randIndex].pos.y);
+          dots.push(new Dot(dotsAssigned, 0, 0));
+          dots[dots.length-1].pos = randomVec;
+          dots[dots.length-1].assignDest(x, y);
           dotsAssigned++;
         }
       }
@@ -191,12 +188,28 @@ function displayDots() {
   var iter = 0;
   while (iter<dots.length) {
     dots[iter].display();
-    dots[iter].move();
+    if (mouseIsPressed) {
+      dots[iter].pos.x += (pmouseX-mouseX)*(dots[iter].pos.x-width/2)/width;
+      dots[iter].pos.y += (pmouseY-mouseY)*(dots[iter].pos.y-height/2)/height;
+    } else {
+      dots[iter].move();
+    }
     if (dots[iter].killMe) {
       dots.splice(iter, 1);
+      iter--;
     }
     iter++;
   }
+}
+
+function initDots() {
+  for (var i=10; i<height; i+=10) {
+    for (var j=10; j<width; j+=10) {
+      dots.push(new Dot(dots.length, 0, 0));
+      dots[dots.length-1].pos = createVector(j, i);
+    }
+  }
+  dotsAssigned = dots.length;
 }
 
 function Dot(idin, xin, yin) {
@@ -232,8 +245,7 @@ function Dot(idin, xin, yin) {
       this.pos.y = this.dest.y;
     }
 
-    if (this.id>=dotsAssigned && (this.pos.x<0 || this.pos.x>width || this.pos.y<0 ||
-      this.pos.y>height)) {
+    if (this.id>=dotsAssigned && this.pos.x == this.dest.x && this.pos.y == this.dest.y) {
       this.killMe = true;
     }
   }
