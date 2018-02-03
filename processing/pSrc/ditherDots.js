@@ -19,7 +19,8 @@ function setup() {
   dropzone.drop(gotFile, unhighlight);
 
   pictResized = true;
-  pict = createImage(600, 600);
+  //pict = createImage(600, 600);
+  pict = loadImage("https://cdn1.caratlane.com/media/catalog/product/J/R/JR03769-YGP900_1_lar.jpg");
 
   dots = [];
   initDots();
