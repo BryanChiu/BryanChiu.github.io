@@ -3,7 +3,7 @@
 
 <head>
 
-    <title>Dither Dots - Bryan Chiu</title>
+    <title>Dither Dots (cam) - Bryan Chiu</title>
     <link rel="icon" href="../img/bc.ico" type="image/icon" />
 
     <!-- Bootstrap Core CSS -->
@@ -19,16 +19,18 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/addons/p5.dom.js"></script>
-	<script src="pSrc/ditherDots.js"></script>
+	<script src="pSrc/ditherDots3.js"></script>
 
     <style> 
-        body {padding: 0; margin: 0;}
-        #dropzone {
-          padding: 10px;
-          border-style: dashed;
-          font-size: 16pt;
-          width: 580px;
-        };
+        #autoRefresh {
+            text-align: center;
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 4px 2px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 	
 </head>
@@ -49,14 +51,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="modal-body">
-                            <h2>Dither Dots</h2>
+                            <h2>Dither Dots - webcam version</h2>
                             <hr class="star-primary">
-                            <center><p id="dropzone">Drop an image here</p>
 							<div id='sketch-holder' style="width: 900px; margin: auto" oncontextmenu="return false;"></div>
-                            <p>Converts images to low-res grayscales represented by black dots and empty space. Uses the Floyd-Steinberg dithering algorithm. Drag and drop an image to see it made up of mobile dots. Images with more light colours run faster as fewer dots are required to make up the image. Click <a href="ditherdotswebcam.html">here</a> for an alternate version that utilizes a webcam. Permission to use your camera must be granted.</p>
+                            <button id="autoRefresh" type="button" onclick="toggleAutoRefresh()">Auto refresh</button>
+                            <p>Webcam version of Dither Dots. Click the button to enable automatic refreshing, or press 'r' to manually take a photo. Click <a href="ditherdots.html">here</a> to go back to the other Dither Dots.</p>
                             <ul class="list-inline item-details">
                                 <li>Source code:
-                                    <strong><a href="pSrc/ditherDots.js" target="_blank">Dither Dots</a>
+                                    <strong><a href="pSrc/ditherDots3.js" target="_blank">Dither Dots - webcam version</a>
                                     </strong>
                                 </li>
                             </ul>

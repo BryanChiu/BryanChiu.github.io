@@ -1,105 +1,84 @@
-var dropzone;
-var pict;
-var pictResized;
-var pictUploaded;
+var capture;
 var scaleFactor = 4;
 var canvasFrame;
+var captured;
 
 var dots;
 var dotsAssigned;
 var dotSize = 4;
 
+var refreshTimer;
+var autoRefresh;
+var autoButton;
+
+var flipflop;
+
 function setup() {
-  var canvas = createCanvas(600, 600);
+  var canvas = createCanvas(600, 450);
   canvas.parent('sketch-holder');
 
-  dropzone = select('#dropzone');
-  dropzone.dragOver(highlight);
-  dropzone.dragLeave(unhighlight);
-  dropzone.drop(gotFile, unhighlight);
+  capture = createCapture(VIDEO, function(){canvasFrame = null;});
+  capture.size(600, 450);
+  capture.hide();
 
-  pictResized = true;
-  pict = createImage(600, 600);
+  canvasFrame = createImage(width, height);
+  captured = false;
 
   dots = [];
   initDots();
   dotArrayLength = 0;
   dotsAssigned = 0;
-}
 
-function highlight() {
-  dropzone.style('background-color', '#cccccc');
-}
-
-function unhighlight() {
-  dropzone.style('background-color', '#ffffff');
-}
-
-function gotFile(file) {
-  pict = null;
-  canvasFrame = null;
-  document.getElementById("dropzone").innerHTML = "Processing file...this will take a few seconds";
-  captureCanvas();
-  pict = loadImage(file.data);
-  pictResized = false;
-  pictUploaded = true;
-}
-
-function captureCanvas() {
-  canvasFrame = createImage(width, height);
-  canvasFrame.loadPixels();
-  loadPixels();
-
-  for (var i=0; i<pixels.length; i++) {
-    canvasFrame.pixels[i] = pixels[i];
-  }
-
-  canvasFrame.updatePixels();
-}
-
-function resizeImage() {
-  if (pict.width>pict.height) {
-    pict.resize(width/scaleFactor, 0);
-  } else {
-    pict.resize(0, height/scaleFactor);
-  }
-  pict.filter(GRAY);
-  pictResized = true;
+  autoRefresh = false;
+  refreshTimer = 50;
+  flipflop = true;
 }
 
 function draw() {
   background(255);
+  // noSmooth();
   noFill();
   stroke(0);
   strokeWeight(5);
   rect(0, 0, width, height);
-  imageMode(CENTER);
-  if (pict.get(0, 0)[3]!=0 && !pictResized) {
-    dotsAssigned = 0;
-    resizeImage();
-    makeDithered(pict, 1);
+  imageMode(CORNERS);
 
-    if (dotsAssigned<dots.length) {
-      for (var i=dotsAssigned; i<dots.length; i++) {
-        var randIndex = floor(random(dotsAssigned));
-        var randomVec = createVector(dots[randIndex].dest.x, dots[randIndex].dest.y);
-        dots[i].assignDest(0, 0);
-        dots[i].dest = randomVec;
-      }
+  if (captured) {
+    makeDithered(canvasFrame, 1);
+    removeExcess();
+
+    captured = false;
+  }
+
+  // image(canvasFrame, 0, 0, width, height);
+  displayDots();
+
+  if (autoRefresh) {
+    if (refreshTimer-- == 0) {
+      captureCanvas();
+      refreshTimer = 150;
     }
-
-    image(canvasFrame, width/2, height/2);
-    document.getElementById("dropzone").innerHTML = "Drop an image here";
-  } else if (pictResized) {
-    displayDots();
-  } else {
-    image(canvasFrame, width/2, height/2);
   }
 }
 
-function showImage() {
-  noSmooth();
-  image(pict, width/2, height/2, pict.width*scaleFactor, pict.height*scaleFactor);
+function captureCanvas() {
+  canvasFrame = null;
+  canvasFrame = createImage(width, height);
+  canvasFrame.loadPixels();
+  capture.loadPixels();
+
+  for (var i=0; i<capture.pixels.length; i++) {
+    canvasFrame.pixels[i] = capture.pixels[i];
+  }
+
+  canvasFrame.updatePixels();
+
+  canvasFrame.resize(width/scaleFactor, 0);
+  canvasFrame.filter(GRAY);
+
+  captured = true;
+  dotsAssigned = 0;
+  flipflop = !flipflop;
 }
 
 function imageIndex(img, x, y) {
@@ -148,7 +127,11 @@ function makeDithered(img, steps) {
 
       if (newG == 0) {
         if (dotsAssigned<dots.length) {
-          dots[dotsAssigned].assignDest(x, y);
+          if (flipflop) {
+            dots[dotsAssigned].assignDest(x, y);
+          } else {
+            dots[dots.length-dotsAssigned-1].assignDest(x, y);
+          }
           dotsAssigned++;
         } else {
           var randIndex = floor(random(dots.length));
@@ -183,6 +166,24 @@ function addError(img, factor, x, y, errG) {
   setColorAtIndex(img, x, y, clr);
 }
 
+function removeExcess() {
+  if (dotsAssigned<dots.length) {
+    if (flipflop) {
+      for (var i=dotsAssigned; i<dots.length; i++) {
+        var randIndex = floor(random(dotsAssigned));
+        var randomVec = createVector(dots[randIndex].dest.x, dots[randIndex].dest.y);
+        dots[i].assignDest(randomVec.x/scaleFactor, randomVec.y/scaleFactor);
+      }
+    } else {
+      for (var i=dots.length-dotsAssigned-1; i>=0; i--) {
+        var randIndex = floor(random(dots.length-dotsAssigned, dots.length));
+        var randomVec = createVector(dots[randIndex].dest.x, dots[randIndex].dest.y);
+        dots[i].assignDest(randomVec.x/scaleFactor, randomVec.y/scaleFactor);
+      }
+    }
+  }
+}
+
 function displayDots() {
   noSmooth();
   var iter = 0;
@@ -214,7 +215,7 @@ function initDots() {
 
 function Dot(idin, xin, yin) {
   this.id = idin;
-  this.pos = createVector(xin*scaleFactor+width/2-pict.width*scaleFactor/2, yin*scaleFactor+height/2-pict.height*scaleFactor/2);
+  this.pos = createVector(xin*scaleFactor, yin*scaleFactor);
   this.vel;
   this.dest;
   this.killMe;
@@ -222,7 +223,7 @@ function Dot(idin, xin, yin) {
   this.assignDest = function(dxin, dyin) {
     this.dest = null;
     this.vel = null;
-    this.dest = createVector(dxin*scaleFactor+width/2-pict.width*scaleFactor/2, dyin*scaleFactor+height/2-pict.height*scaleFactor/2);
+    this.dest = createVector(dxin*scaleFactor, dyin*scaleFactor);
     this.vel = createVector(this.dest.x-this.pos.x, this.dest.y-this.pos.y);
     this.vel.normalize();
     this.killMe = false;
@@ -245,7 +246,7 @@ function Dot(idin, xin, yin) {
       this.pos.y = this.dest.y;
     }
 
-    if (this.id>=dotsAssigned && this.pos.x == this.dest.x && this.pos.y == this.dest.y) {
+    if (((flipflop && this.id>=dotsAssigned) || (!flipflop && this.id<=dots.length-dotsAssigned-1)) && this.pos.x == this.dest.x && this.pos.y == this.dest.y) {
       this.killMe = true;
     }
   }
@@ -253,6 +254,21 @@ function Dot(idin, xin, yin) {
   this.display = function() {
     noStroke();
     fill(0);
-    rect(this.pos.x, this.pos.y, dotSize-0.1, dotSize-0.1);
+    rect(this.pos.x, this.pos.y, dotSize-0.2, dotSize-0.2);
+  }
+}
+
+function keyTyped() {
+  if (key=='r') {
+    captureCanvas();
+  }
+}
+
+function toggleAutoRefresh() {
+  autoRefresh = !autoRefresh;
+  if (autoRefresh) {
+    document.getElementById("autoRefresh").innerHTML = "Manual refresh";
+  } else {
+    document.getElementById("autoRefresh").innerHTML = "Auto refresh";
   }
 }
