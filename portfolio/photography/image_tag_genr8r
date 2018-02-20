@@ -1,4 +1,5 @@
 #!/bin/bash
+rm image_tags.txt
 ls > filenames.txt
 sed -i '/.txt/d' filenames.txt
 sed -i '/.md/d' filenames.txt

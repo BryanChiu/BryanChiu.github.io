@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Obstacle Avoid - Bryan Chiu</title>
+    <link rel="icon" href="../img/bc.ico" type="image/icon" />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="../css/freelancer.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.js"></script>
+	
+</head>
+
+<body id="page-top" class="index">
+
+    <div class="portfolio-modal">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+				<a href="../processing.html">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+				</a>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <h2>Obstacle Avoid</h2>
+                            <hr class="star-primary">
+							<center><canvas data-processing-sources="pSrc/Obstacle_Avoid.pde"></canvas></center>
+                            <p>Genetic algorithm: red circles start at the top and attempt to reach the bottom blue circle while avoiding rectangular obstacles. It has four controls: boost forward, boost left, brake, boost right. Fitness is defined by distance to blue circle, and then time spent to reach destination. As there is no pathfinding algorithm implemented, even if there is a viable path to the destination, the circles may not find it if it involves first moving further away from the destination before getting closer.</p>
+                            <p>Click and hold to draw out rectangular obstacle</p>
+                            <ul class="list-inline item-details">
+                                <li>Source code:
+                                    <strong><a href="pSrc/Obstacle_Avoid.pde" target="_blank">Orbitter</a>
+                                    </strong>
+                                </li>
+                            </ul>
+							<a href="../processing.html">
+							<button type="button" class="btn btn-default"><i class="fa fa-times"></i> Close</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
