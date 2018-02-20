@@ -116,14 +116,7 @@ void resetGeneration() {
       }
     }
   } 
-  for (int i=0; i<balz.size(); i++) {
-    print(i+": ");
-    for (int gene : balz.get(i).DNA) {
-      print(gene);
-    }
-    println(' ');
-  }
-
+  
   balz.clear();
 
   for (int i=0; i<150; i++) {
@@ -133,9 +126,6 @@ void resetGeneration() {
       balz.add(new Ball(initVelX, initVelY));
     }
     for (int gene : topDNA) {
-      //if ((balz.get(i).DNA.size()>=topDNA.size()*0.80 && i>24)) { // || (balz.get(i).DNA.size()>=topDNA.size()*0.80 && i>23 && i<27)) {
-      //  break;
-      //}
       balz.get(i).DNA.add(gene);
     }
     balz.get(i).id = i;

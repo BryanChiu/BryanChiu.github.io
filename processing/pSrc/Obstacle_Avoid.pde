@@ -86,13 +86,6 @@ void resetGeneration() {
         topDNA = bawl.DNA;
       }
     }
-  } 
-  for (int i=0; i<balz.size(); i++) {
-    print(i+": ");
-    for (int gene : balz.get(i).DNA) {
-      print(gene);
-    }
-    println(' ');
   }
 
   balz.clear();
