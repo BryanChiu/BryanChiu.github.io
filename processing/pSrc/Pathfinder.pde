@@ -108,7 +108,7 @@ void resetGeneration() {
   }
   if (topDNA.size()==0 && balz.size()!=0) {
     for (Ball bawl : balz) {
-      if (bawl.cpPassed==genFurthestCP && bawl.dist==genClosest) {
+      if (bawl.cpPassed==genFurthestCP && bawl.distance==genClosest) {
         topDNA = bawl.DNA;
         initVelX = bawl.initVel.x;
         initVelY = bawl.initVel.y;
@@ -159,7 +159,7 @@ class Ball {
   boolean crashed = false;
   boolean reached = false;
   int cpPassed = 0;
-  float dist;
+  float distance;
   int life;
   int id;
 
@@ -182,7 +182,7 @@ class Ball {
     }
     cen.x+=vel.x;
     cen.y+=vel.y;
-    dist = dist(cen.x, cen.y, checkpoints.get(cpPassed).x, checkpoints.get(cpPassed).y);
+    distance = dist(cen.x, cen.y, checkpoints.get(cpPassed).x, checkpoints.get(cpPassed).y);
     life = updateTimer;
     checkCollision();
 
@@ -199,17 +199,17 @@ class Ball {
       crashed = true;
       if (cpPassed>genFurthestCP) {
         genFurthestCP = cpPassed;
-        genClosest = dist;
-      } else if (cpPassed==genFurthestCP && dist<genClosest) {
-        genClosest = dist;
+        genClosest = distance;
+      } else if (cpPassed==genFurthestCP && distance<genClosest) {
+        genClosest = distance;
       }
       cutDNA();
       return;
     }
-    if (dist<rad+15) {
+    if (distance<rad+15) {
       cpPassed++;
     }
-    if (dist<rad+15 && cpPassed==checkpoints.size()) {
+    if (distance<rad+15 && cpPassed==checkpoints.size()) {
       reached = true;
       if (life<genQuickest) {
         genQuickest = life;

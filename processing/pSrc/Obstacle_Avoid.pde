@@ -82,7 +82,7 @@ void resetGeneration() {
   }
   if (topDNA.size()==0 && balz.size()!=0) {
     for (Ball bawl : balz) {
-      if (bawl.dist==genClosest) {
+      if (bawl.distance==genClosest) {
         topDNA = bawl.DNA;
       }
     }
@@ -97,7 +97,7 @@ void resetGeneration() {
 
   balz.clear();
 
-  for (int i=0; i<30; i++) {
+  for (int i=0; i<150; i++) {
     balz.add(new Ball());
     if (i<25) {
       for (int gene : topDNA) {
@@ -125,7 +125,7 @@ class Ball {
   ArrayList<Integer> DNA = new ArrayList<Integer>();
   boolean crashed = false;
   boolean reached = false;
-  float dist;
+  float distance;
   int life;
   int id;
 
@@ -144,7 +144,7 @@ class Ball {
     }
     cen.x+=vel.x;
     cen.y+=vel.y;
-    dist = dist(cen.x, cen.y, target.x, target.y);
+    distance = dist(cen.x, cen.y, target.x, target.y);
     life = updateTimer;
     checkCollision();
 
@@ -154,8 +154,8 @@ class Ball {
   void checkCollision() {
     if (cen.x<0+rad || cen.x>width-rad || cen.y<0+rad || cen.y>height-rad || vel.mag()<0.01) {
       crashed = true;
-      if (dist<genClosest) {
-        genClosest = dist;
+      if (distance<genClosest) {
+        genClosest = distance;
       }
       cutDNA();
       return;
@@ -163,14 +163,14 @@ class Ball {
     for (Square scware : rex) { // bounce circle against squares
       if (this.cen.x+this.rad > scware.x1 && this.cen.x-this.rad < scware.x2 && this.cen.y+this.rad > scware.y1 && this.cen.y-this.rad < scware.y2) {
         crashed = true;
-        if (dist<genClosest) {
-          genClosest = dist;
+        if (distance<genClosest) {
+          genClosest = distance;
         }
         cutDNA();
         return;
       }
     }
-    if (dist<rad+15) {
+    if (distance<rad+15) {
       reached = true;
       if (life<genQuickest) {
         genQuickest = life;
