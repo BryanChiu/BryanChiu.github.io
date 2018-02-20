@@ -39,17 +39,17 @@ void draw() {
     fill(0);
     textAlign(RIGHT);
     textSize(20);
-    text("Generation: "+Integer.toString(generationCount), width-10, height-10);
+    text("Generation: "+str(generationCount), width-10, height-10);
     textAlign(LEFT);
     textSize(14);
-    text("Generation timer: "+Integer.toString(updateTimer), 10, height-50);
+    text("Generation timer: "+str(updateTimer), 10, height-50);
     if (totalQuickest!=9999) {
-      text("Quickest success: "+Integer.toString(totalQuickest), 10, height-30);
+      text("Quickest success: "+str(totalQuickest), 10, height-30);
     } else {
       text("Quickest success: -", 10, height-30);
     }
     if (firstSuccess!=9999) {
-      text("First successful generation: "+Integer.toString(firstSuccess), 10, height-10);
+      text("First successful generation: "+str(firstSuccess), 10, height-10);
     } else {
       text("First successful generation: -", 10, height-10);
     }

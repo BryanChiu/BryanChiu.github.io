@@ -37,10 +37,10 @@ void draw() {
   fill(0);
   textAlign(CENTER, CENTER);
   textSize(20);
-  text("Generation: "+Integer.toString(generationCount), width-80, height-30);
+  text("Generation: "+str(generationCount), width-80, height-30);
   textSize(14);
-  text("LifeTimer: "+Integer.toString(updateTimer), 60, height-35);
-  text("Quickest: "+Integer.toString(totalQuickest), 60, height-15);
+  text("LifeTimer: "+str(updateTimer), 60, height-35);
+  text("Quickest: "+str(totalQuickest), 60, height-15);
 }
 
 void displayRex() {
