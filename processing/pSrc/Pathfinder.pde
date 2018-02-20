@@ -187,6 +187,7 @@ class Ball {
     checkCollision();
 
     if (cpPassed<checkpoints.size()) {
+      noStroke();
       fill(0, 250, 0);
       ellipse(checkpoints.get(cpPassed).x, checkpoints.get(cpPassed).y, 30, 30);
     }
@@ -259,7 +260,9 @@ class Ball {
 
   void force(int dir) {
     if (dir==0) { // accel
-      vel.add(new PVector(vel.x, vel.y).setMag(0.5));
+      PVector accel = new PVector(vel.x, vel.y);
+      accel.setMag(0.5);
+      vel.add(accel);
     } else if (dir==1) { // right
       vel.rotate(PI/8);
     } else if (dir==2) { // brake

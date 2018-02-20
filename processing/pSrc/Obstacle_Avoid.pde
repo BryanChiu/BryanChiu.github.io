@@ -236,8 +236,10 @@ class Ball {
       right.mult(0.5);
       vel.add(right);
       vel.setMag(ogMag);
-    }       
-    vel.add(new PVector(vel.x, vel.y).setMag(0.2));
+    }
+    PVector accel = new PVector(vel.x, vel.y);
+    accel.setMag(0.2);
+    vel.add(accel);
   }
 
   void cutDNA() {
