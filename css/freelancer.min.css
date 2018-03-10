@@ -80,6 +80,15 @@ hr.star-primary:after {
 	width: auto\9;
 	margin:0 auto
 }
+@media (max-width:768px){
+	.pfolioelem{
+		max-width: 100%;
+	}
+}
+.pfoliovidembed {
+	width: 800px;
+	height: 450px;
+}
 header {
 	text-align:center;
 	background:#18BC9C;
