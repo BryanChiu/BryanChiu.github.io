@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bryan Chiu</title>
+    <link rel="icon" href="img/bc.ico" type="image/icon" />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/freelancer.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <style>
+        * {box-sizing: border-box}
+        body {font-family: Verdana, sans-serif; margin:0}
+        .mySlides {
+            display: none;
+            width: 66%;
+            position: relative;
+            margin: auto;
+        }
+        
+        @media (max-width:768px){
+            .mySlides{
+                width: 100%;
+            }
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+          max-width: 100%;
+          position: relative;
+          /*margin: auto;*/
+        }
+
+        /* Next & previous buttons */
+        .prev {
+          cursor: pointer;
+          position: absolute;
+          top: 40%;
+          padding: 16px;
+          color: white;
+          font-weight: bold;
+          font-size: 18px;
+          border-radius: 0 3px 3px 0;
+          user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+          cursor: pointer;
+          position: absolute;
+          top: 40%;
+          right: 0;
+          padding: 16px;
+          color: white;
+          font-weight: bold;
+          font-size: 18px;
+          user-select: none;
+          border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+          background-color: rgba(0,0,0,0.8);
+        }
+
+        /* Caption text */
+        .text {
+          color: #000000;
+          font-size: 15px;
+          padding: 8px 12px;
+          position: absolute;
+          bottom: 30px;
+          width: 100%;
+          text-align: center;
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+          color: #ffffff;
+          font-size: 12px;
+          padding: 8px 12px;
+          position: absolute;
+          top: 0;
+        }
+
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+          .prev, .next,.text {font-size: 11px}
+        }
+    </style>
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">Bryan Chiu</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="photo.html">photo</a>
+                    </li>
+                    <li style="background:#18BC9C;color:#fff;padding:15px">
+                        graphic
+                    </li>
+                    <li>
+                        <a href="video.html">video</a>
+                    </li>
+                    <li>
+						<a href="processing.html">Processing</a>
+                    </li>
+		    		<li>
+						<a href="Bryan Chiu Resume.pdf" target="_blank">Resume</a>
+		    		</li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <br><br>
+
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Graphic</h2>
+                    <hr class="star-primary">
+                    <p>My collection of works featuring graphics and layout</p><br>
+                </div>
+            </div>
+            <div class="rowPfolio">
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#rowing" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <h2>Rowing Poster</h2>
+                            </div>
+                        </div>
+                        <img src="portfolio/rowing/Rowing_new.jpg" class="img-preview" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#lincoln" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <h2>Lincoln Electric</h2>
+                            </div>
+                        </div>
+                        <img src="portfolio/pythonx/warranty1.jpg" class="img-preview" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#alcove" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <h2>The Alcove Coasters</h2>
+                            </div>
+                        </div>
+                        <img src="portfolio/alcove/Coaster_Purple.jpg" class="img-preview" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#chamrose" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+								<h2>Chameleon & Rose</h2>
+                            </div>
+                        </div>
+                        <img src="portfolio/chamrose/chameleonrose_blackwhiteout.jpg" class="img-preview" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#typography" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+								<h2>Expressive Typography</h2>
+                            </div>
+                        </div>
+                        <img src="portfolio/typography/disruption-01.jpg" class="img-preview" alt="">
+                    </a>
+                </div>
+				<div class="col-sm-4 portfolio-item">
+                    <a href="#bookcover" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <h2>Book Covers</h2>
+                            </div>
+                        </div>
+                        <img src="portfolio/bookcover/Mockingbird1.jpg" class="img-preview" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#redcup" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <h2>redcup</h2>
+                            </div>
+                        </div>
+                        <img src="portfolio/redcup/redcup-loading-iso-circle-1-720.gif" class="img-preview" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>About</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1">
+                    <p>I am a Multimedia designer, with a BA in Multimedia from McMaster University, and in the process of getting a BASc in Computer Science. He specializes in videography & motion graphics, retouching, and object-oriented programming</p>
+                </div>
+                <div class="col-lg-5">
+                    <ul style="font-size:135%;">
+                        <li>Adobe Photoshop, Illustrator, After Effects, Premiere, Audition, Lightroom, InDesign</li>
+                        <li>Java, Python, C#, C++</li>
+                        <li>HTML/CSS and Javascript</li>
+                        <li>Unity</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer --> 
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col">
+                        <h3>Bryan Chiu</h3>
+                        <p>Email: chiub1@mcmaster.ca</p>
+                        <!-- <p>Services: <a href="https://www.fiverr.com/chiubacca44" target="_blank">Fiverr Freelancing</a></p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Bryan Chiu 2019
+			<br>Site theme created by <a href="https://startbootstrap.com/template-overviews/freelancer/" target="_blank">Start Bootstrap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="rowing" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+           <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <h2>Rowing Poster</h2>
+                            <hr class="star-primary">
+                            <p>Poster designs for Rowing, a dark comedy play. [Class assignment]</p><br>
+                            <img src="portfolio/rowing/Rowing_new.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/rowing/Rowing_old.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/rowing/Rowing_small.jpg" class="img-responsive pfolioelem">
+							<hr class="pfolioelemdiv">
+						    <p >Background creation gifs</p><br>
+							<img src="portfolio/rowing/rowing_new.gif" class="img-responsive pfolioelem">
+							<img src="portfolio/rowing/rowing_old.gif" class="img-responsive pfolioelem">					    
+							<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="lincoln" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <h2>Lincoln Electric</h2>
+                            <hr class="star-primary"><br>
+                            <p>Marketing materials created for Lincoln Electric's PythonX, a robotic CNC plasma cutting system.</p><br>
+                            <div class="slideshow-container">
+                                <div class="mySlides">
+                                    <div class="numbertext">1 / 4</div>
+                                    <img src="portfolio/pythonx/care1.jpg" style="max-width: 100%">
+                                    <div class="text" style="color: white">Front</div>
+                                    <div class="prev" onclick="prevSlide(this)">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)">&#10095;</div>
+                                </div>
+                                <div class="mySlides">
+                                    <div class="numbertext" style="color: black">2 / 4</div>
+                                    <img src="portfolio/pythonx/care2.jpg" style="max-width: 100%">
+                                    <div class="text" style="color: white">Inside left</div>
+                                    <div class="prev" onclick="prevSlide(this)" style="color: black">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)" style="color: black">&#10095;</div>
+                                </div>
+                                <div class="mySlides">
+                                    <div class="numbertext">3 / 4</div>
+                                    <img src="portfolio/pythonx/care3.jpg" style="max-width: 100%">
+                                    <div class="text">Inside right</div>
+                                    <div class="prev" onclick="prevSlide(this)" style="color: black">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)" style="color: black">&#10095;</div>
+                                </div>
+                                <div class="mySlides">
+                                    <div class="numbertext" style="color: black">4 / 4</div>
+                                    <img src="portfolio/pythonx/care4.jpg" style="max-width: 100%">
+                                    <div class="text">Back</div>
+                                    <div class="prev" onclick="prevSlide(this)" style="color: black">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)">&#10095;</div>
+                                </div>
+                            </div>
+                            <hr class="pfolioelemdiv">
+                            <div class="slideshow-container">
+                                <div class="mySlides" style="width: 100%">
+                                    <div class="numbertext">1 / 2</div>
+                                    <img src="portfolio/pythonx/warranty1.jpg" style="max-width: 100%">
+                                    <div class="text">Warranty pamphlet</div>
+                                    <div class="prev" onclick="prevSlide(this)" style="color: black">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)">&#10095;</div>
+                                </div>
+                                <div class="mySlides" style="width: 100%">
+                                    <div class="numbertext" style="color: black">2 / 2</div>
+                                    <img src="portfolio/pythonx/warranty2.jpg"  style="max-width: 100%">
+                                    <div class="text">Warranty pamphlet</div>
+                                    <div class="prev" onclick="prevSlide(this)" style="color: black">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)" style="color: black">&#10095;</div>
+                                </div>
+                            </div>
+                            <br><br>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="alcove" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+           <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <h2>The Alcove Coasters</h2>
+                            <hr class="star-primary">
+                            <p>Coaster designs for The Alcove, a theoretical cafe & bar. [Class assignment]</p>
+                            <img src="portfolio/alcove/Coaster_Purple.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/alcove/Coaster_Brown.jpg" class="img-responsive pfolioelem">
+							<hr class="pfolioelemdiv">
+						    <p>Design processes</p><br>
+						    <img src="portfolio/alcove/coaster_process-sketches.jpg" class="img-responsive pfolioelem"><br>
+							<iframe src="https://player.vimeo.com/video/258750462?title=0&byline=0&portrait=0" class="pfoliovidembed" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><br><br>
+							Creating the elements (above) and creating the coasters (below).<br><br>
+						    <iframe src="https://player.vimeo.com/video/258751586?title=0&byline=0&portrait=0" class="pfoliovidembed" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><br><br>
+							<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="chamrose" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <h2>Chameleon & Rose</h2>
+                            <hr class="star-primary"><br>
+                            <p>Chameleon & rose vector art for <a href="https://issuu.com/incite-magazine">Incite Magazine</a>, McMaster University's creative arts and writing publication</p><br>
+                            <hr class="pfolioelemdiv">
+						    <img src="portfolio/chamrose/chameleonrose_blackwhiteout.jpg" class="img-responsive"><br>
+							<img src="portfolio/chamrose/Incite_cover.jpg" class="img-responsive pfolioelem"><br>
+							<p class="small">Incite "Colour" issue</p><br>
+							<img src="portfolio/chamrose/Incite_fullpage.jpg" class="img-responsive pfolioelem"><br>
+							<hr class="pfolioelemdiv">
+							<img src="portfolio/chamrose/chameleonrose_grid.jpg" class="img-responsive pfolioelem"><br>
+							<p class="small">Other versions</p><br>
+							<img src="portfolio/chamrose/chameleonrose_source.jpg" class="img-responsive pfolioelem"><br>
+							<p class="small">Source images I based off of</p><br>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="typography" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <h2>Expressive Typograhy</h2>
+                            <hr class="star-primary"><br>
+                            <p>Expressive typography using only the words themselves (typeface: Bauhaus 93) [Class assignment]</p><br>
+                            <hr class="pfolioelemdiv">
+						    <img src="portfolio/typography/disruption-01.jpg" class="img-responsive pfolioelem"><br>
+							<img src="portfolio/typography/disruption-02.jpg" class="img-responsive pfolioelem"><br>
+							<img src="portfolio/typography/migration-01.jpg" class="img-responsive pfolioelem"><br>
+							<img src="portfolio/typography/migration-02.jpg" class="img-responsive pfolioelem"><br>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="bookcover" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+           <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <h2>Book Covers</h2>
+                            <hr class="star-primary">
+                            <p>Book cover designs [Class assignment]</p><br>
+                            <img src="portfolio/bookcover/Mockingbird1.jpg" class="img-responsive pfolioelem" width="487" height="630"><br>
+                            <img src="portfolio/bookcover/Mockingbird2.jpg" class="img-responsive pfolioelem" width="487" height="630"><br>
+                            <img src="portfolio/bookcover/Animal.jpg" class="img-responsive pfolioelem" width="487" height="630"><br>
+                            <img src="portfolio/bookcover/Gatsby1.jpg" class="img-responsive pfolioelem" width="487" height="630"><br>
+                            <img src="portfolio/bookcover/Gatsby2.jpg" class="img-responsive pfolioelem" width="487" height="630"><br>
+                            <img src="portfolio/bookcover/Fahrenheit1.jpg" class="img-responsive pfolioelem" width="487" height="630"><br>
+                            <img src="portfolio/bookcover/Fahrenheit2.jpg" class="img-responsive pfolioelem" width="487" height="630"><br>
+                            <img src="portfolio/bookcover/Fahrenheit3.jpg" class="img-responsive pfolioelem" width="487" height="630"><br>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="surreal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+           <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <h2>Surreal</h2>
+                            <hr class="star-primary">
+                            <p>Image manipulation and composition</p>
+                            <hr class="pfolioelemdiv">
+                            <img src="portfolio/surreal/Orange Juice.jpg" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/surreal/Orange Juice.gif" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/surreal/Joey DubExp v2.jpg" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/surreal/Ultiplayer DubExp.jpg" class="img-responsive pfolioelem"><br>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="redcup" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+           <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <h2>redcup</h2>
+                            <hr class="star-primary">
+						    <p>Logo design of a party hosting app</p><br>
+						    <img src="portfolio/redcup/Banner-01.jpg" class="img-responsive pfolioelem"><br>
+						    <img src="portfolio/redcup/redcup-loading-iso-circle-1-720.gif" class="img-responsive pfolioelem">
+						    <p class="small">redcup loading animation</p>
+						    <hr class="pfolioelemdiv">
+						    <p>Alternative versions</p><br>
+						    <img src="portfolio/redcup/NameWhite-01.jpg" class="img-responsive pfolioelem"><br>
+						    <img src="portfolio/redcup/NameRed.jpg" class="img-responsive pfolioelem">
+						    <p class="small">Early conceptualization stages</p><br><br>
+						    <img src="portfolio/redcup/Initial.jpg" class="img-responsive pfolioelem">
+						    <p class="small">Logo variants</p><br><br>
+						    <img src="portfolio/redcup/Triple-Loading.gif" class="img-responsive pfolioelem">				
+						    <p class="small">Logo animation variants</p><br><br>
+						    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/freelancer.min.js"></script>
+
+    <script>
+        var slideshows = document.getElementsByClassName("slideshow-container");
+        var slideIndex = [];
+
+        function initIndices() {
+            for (var i = 0; i < slideshows.length; i++) {
+                slideIndex[i] = 1;  
+            }
+
+            for (var i = 0; i < slideshows.length; i++) {
+                showSlides(i, slideIndex[i]);
+            }
+        }
+
+        function showSlides(s, n) {
+          var slides = slideshows[s].getElementsByClassName("mySlides");
+          if (n > slides.length) {slideIndex[s] = 1}    
+          if (n < 1) {slideIndex[s] = slides.length}
+          for (var i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";  
+          }
+          slides[slideIndex[s]-1].style.display = "block";
+        }
+
+        initIndices();
+
+        function prevSlide(butt) {
+            for (var i=0; i<slideshows.length; i++) {
+                prevs = slideshows[i].getElementsByClassName("prev");
+                for (var j=0; j<prevs.length; j++) {
+                    if (butt==prevs[j]) {
+                        slideIndex[i]-=1;
+                        showSlides(i, slideIndex[i]);
+                    }
+                }
+            }
+        }
+
+        function nextSlide(butt) {
+            for (var i=0; i<slideshows.length; i++) {
+                nexts = slideshows[i].getElementsByClassName("next");
+                for (var j=0; j<nexts.length; j++) {
+                    if (butt==nexts[j]) {
+                        slideIndex[i]+=1;
+                        showSlides(i, slideIndex[i]);
+                    }
+                }
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

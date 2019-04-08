@@ -40,7 +40,7 @@
                             <h2>Pathfinder</h2>
                             <hr class="star-primary">
 							<center><canvas data-processing-sources="pSrc/Pathfinder.pde"></canvas></center>
-                            <p>Genetic algorithm: circles start at the beginning of a path and attempt to reach the end while staying on the path. The path is drawn by the user, and checkpoints are automatically set to help circles. It has four controls: boost forward, boost left, brake, boost right. Fitness is defined by distance next checkpoint (or last checkpoint), and then time spent to reach destination. As there is no pathfinding algorithm implemented (even though I called it Pathfinder), it needs checkpoints to know where the path is, otherwise it would get stuck trying to navigate a path that requires going further away from the end.</p>
+                            <p>Genetic algorithm: circles start at the beginning of a path and attempt to reach the end while staying on the path. The path is drawn by the user, and checkpoints are automatically set to help circles. It has four controls: boost forward, boost left, brake, boost right. Fitness is defined by distance to next checkpoint (or last checkpoint), and then time spent to reach destination. As there is no pathfinding algorithm implemented (even though I called it Pathfinder), it needs checkpoints to know where the path is, otherwise it would get stuck trying to navigate a path that requires going further away from the end.</p>
                             <p>Click and hold to draw out path.</p>
                             <ul class="list-inline item-details">
                                 <li>Source code:

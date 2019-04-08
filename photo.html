@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bryan Chiu</title>
+    <link rel="icon" href="img/bc.ico" type="image/icon" />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/freelancer.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <style>
+        * {box-sizing: border-box}
+        body {font-family: Verdana, sans-serif; margin:0}
+        .mySlides {
+            display: none;
+            width: 66%;
+            position: relative;
+            margin: auto;
+        }
+
+        @media (max-width:768px){
+            .mySlides{
+                width: 100%;
+            }
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+          max-width: 1200px;
+          position: relative;
+          /*margin: auto;*/
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+          cursor: pointer;
+          position: absolute;
+          top: 40%;
+          padding: 16px;
+          color: white;
+          font-weight: bold;
+          font-size: 18px;
+          border-radius: 0 3px 3px 0;
+          user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+          cursor: pointer;
+          position: absolute;
+          top: 40%;
+          right: 0;
+          padding: 16px;
+          color: white;
+          font-weight: bold;
+          font-size: 18px;
+          user-select: none;
+          border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover, .next:hover {
+          background-color: rgba(0,0,0,0.8);
+        }
+
+        /* Caption text */
+        .text {
+          color: #000000;
+          font-size: 15px;
+          padding: 8px 12px;
+          position: absolute;
+          bottom: 30px;
+          width: 100%;
+          text-align: center;
+        }
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+          color: #ffffff;
+          font-size: 12px;
+          padding: 8px 12px;
+          position: absolute;
+          top: 0;
+        }
+
+
+        /* On smaller screens, decrease text size */
+        @media only screen and (max-width: 300px) {
+          .prev, .next,.text {font-size: 11px}
+        }
+    </style>
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#page-top">Bryan Chiu</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li style="background:#18BC9C;color:#fff;padding:15px">
+                        photo
+                    </li>
+                    <li>
+                        <a href="graphic.html">graphic</a>
+                    </li>
+                    <li>
+                        <a href="video.html">video</a>
+                    </li>
+                    <li>
+                        <a href="processing.html">Processing</a>
+                    </li>
+		    		<li>
+						<a href="Bryan Chiu Resume.pdf" target="_blank">Resume</a>
+		    		</li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <br><br>
+
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Photo</h2>
+                    <hr class="star-primary">
+                    <p>My collection of works featuring photography, retouching, and composites</p><br>
+                </div>
+            </div>
+            <div class="rowPfolio">
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#photography" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+								<h2>Photography</h2>
+                            </div>
+                        </div>
+                        <img src="portfolio/photography/IMG_7846.jpg" class="img-preview" alt="">
+                    </a>
+                </div>
+				<div class="col-sm-4 portfolio-item">
+                    <a href="#retouch" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+								<h2>Retouching</h2>
+                            </div>
+                        </div>
+                        <img src="portfolio/retouch/Portrait Before After.jpg" class="img-preview" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#growthray" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <h2>Growth ray</h2>
+                            </div>
+                        </div>
+                        <img src="portfolio/growthray/Seabed - USB.jpg" class="img-preview" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a href="#surreal" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <h2>Surreal</h2>
+                            </div>
+                        </div>
+                        <img src="portfolio/surreal/Joey DubExp v2.jpg" class="img-preview" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>About</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1">
+                    <p>I am a Multimedia designer, with a BA in Multimedia from McMaster University, and in the process of getting a BASc in Computer Science. He specializes in videography & motion graphics, retouching, and object-oriented programming</p>
+                </div>
+                <div class="col-lg-5">
+                    <ul style="font-size:135%;">
+                        <li>Adobe Photoshop, Illustrator, After Effects, Premiere, Audition, Lightroom, InDesign</li>
+                        <li>Java, Python, C#, C++</li>
+                        <li>HTML/CSS and Javascript</li>
+                        <li>Unity</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer --> 
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col">
+                        <h3>Bryan Chiu</h3>
+                        <p>Email: chiub1@mcmaster.ca</p>
+                        <!-- <p>Services: <a href="https://www.fiverr.com/chiubacca44" target="_blank">Fiverr Freelancing</a></p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Bryan Chiu 2019
+			<br>Site theme created by <a href="https://startbootstrap.com/template-overviews/freelancer/" target="_blank">Start Bootstrap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="photography" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+           <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <h2>Photography</h2>
+                            <hr class="star-primary">
+                            <p>Album of unedited photographs</p>
+							<hr class="pfolioelemdiv">
+                            <img src="portfolio/photography/DSC_0218.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0221.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0222.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0233.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0321.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0553.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0566.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0586.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0593.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0594.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0595.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0598.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0599.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0602.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0762.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0846.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0850.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0853.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0854.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0858.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0859.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0860.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0864.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0880.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0893.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0924.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0932.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0981.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_0992.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_1009.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/DSC_1010.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/IMG_7832.jpg" class="img-responsive pfolioelem">
+							<img src="portfolio/photography/IMG_7846.jpg" class="img-responsive pfolioelem">
+							<br>			
+							<button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="retouch" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <h2>Retouching</h2>
+                            <hr class="star-primary"><br>
+							<p>Photo retouching and editing</p>
+							<hr class="pfolioelemdiv">
+                            <div class="slideshow-container">
+                                <div class="mySlides">
+                                    <div class="numbertext" style="color: black">1 / 3</div>
+                                    <img src="portfolio/retouch/Sky/Sky0.jpg" style="max-width: 100%">
+                                    <div class="text" style="color: white">Original</div>
+                                    <div class="prev" onclick="prevSlide(this)">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)">&#10095;</div>
+                                </div>
+                                <div class="mySlides">
+                                    <div class="numbertext" style="color: black">2 / 3</div>
+                                    <img src="portfolio/retouch/Sky/Sky4.jpg" style="max-width: 100%">
+                                    <div class="text" style="color: white">Background removal, colour correction</div>
+                                    <div class="prev" onclick="prevSlide(this)">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)">&#10095;</div>
+                                </div>
+                                <div class="mySlides">
+                                    <div class="numbertext" style="color: black">3 / 3</div>
+                                    <video style="max-width: 100%" controls autoplay loop><source src="portfolio/retouch/Sky/Sky.mp4" type="video/mp4"></video><br><br>
+                                    <div class="text" style="color: white">Process</div>
+                                    <div class="prev" onclick="prevSlide(this)">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)">&#10095;</div>
+                                </div>
+                            </div>
+						    <hr class="pfolioelemdiv">
+						    <div class="slideshow-container">
+                                <div class="mySlides">
+                                    <div class="numbertext">1 / 4</div>
+                                    <img src="portfolio/retouch/smoke_1.jpg" style="max-width: 100%">
+                                    <div class="text">Original</div>
+                                    <div class="prev" onclick="prevSlide(this)">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)">&#10095;</div>
+                                </div>
+                                <div class="mySlides">
+                                    <div class="numbertext">2 / 4</div>
+                                    <img src="portfolio/retouch/smoke_2.jpg" style="max-width: 100%">
+                                    <div class="text">Colour balance</div>
+                                    <div class="prev" onclick="prevSlide(this)">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)">&#10095;</div>
+                                </div>
+                                <div class="mySlides">
+                                    <div class="numbertext">3 / 4</div>
+                                    <img src="portfolio/retouch/smoke_3.jpg" style="max-width: 100%">
+                                    <div class="text">Recolour</div>
+                                    <div class="prev" onclick="prevSlide(this)">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)">&#10095;</div>
+                                </div>
+                                <div class="mySlides">
+                                    <div class="numbertext">4 / 4</div>
+                                    <img src="portfolio/retouch/smoke_4.jpg" style="max-width: 100%">
+                                    <div class="text">Cleanup and edits</div>
+                                    <div class="prev" onclick="prevSlide(this)">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)">&#10095;</div>
+                                </div>
+                            </div>
+						    <hr class="pfolioelemdiv">
+                            <div class="slideshow-container">
+                                <div class="mySlides">
+                                    <div class="numbertext">1 / 2</div>
+                                    <img src="portfolio/retouch/Chris Blurry.jpg" style="max-width: 100%">
+                                    <div class="text">Original</div>
+                                    <div class="prev" onclick="prevSlide(this)">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)">&#10095;</div>
+                                </div>
+                                <div class="mySlides">
+                                    <div class="numbertext">2 / 2</div>
+                                    <img src="portfolio/retouch/Chris Blur Removed.jpg" style="max-width: 100%">
+                                    <div class="text">Focus and sharpened</div>
+                                    <div class="prev" onclick="prevSlide(this)">&#10094;</div>
+                                    <div class="next" onclick="nextSlide(this)">&#10095;</div>
+                                </div>
+                            </div>
+						    <hr class="pfolioelemdiv">
+						    <img src="portfolio/retouch/Portrait Before.JPG" class="img-responsive pfolioelem"><br>
+						    <img src="portfolio/retouch/Portrait After.jpg" class="img-responsive pfolioelem"><br>
+						    <img src="portfolio/retouch/Portrait Before After.jpg" class="img-responsive pfolioelem">
+						    <p class="small">Dynamic colour grading</p><br><br>
+						    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="growthray" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+           <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <h2>Growth Ray</h2>
+                            <hr class="star-primary">
+                            <p>Series of images created by seamlessly placing palm-sized objects in environments that make them look gigantic [Class assignment]</p>
+                            <hr class="pfolioelemdiv">
+                            <img src="portfolio/growthray/Overgrown City - Shotglass.jpg" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/Seabed - USB.jpg" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/Wheat Field - Playing Cards.jpg" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/Glacier - Pushpin.jpg" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/Forest - Bic Lighter.jpg" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/Littered Beach - Sunglasses.jpg" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/Sand Dunes - Rubiks Cube.jpg" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/Roman Forum - Two Euro.jpg" class="img-responsive pfolioelem">
+                            <hr style="width:300px;border-width:2px;border-color:#999">
+                            Creation gifs<br>
+                            <img src="portfolio/growthray/toronto_creation.gif" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/underwater_creation.gif" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/wheatfield_creation.gif" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/arctic_creation.gif" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/lighter_creation.gif" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/sunnies_creation.gif" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/desert_creation.gif" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/growthray/forum_creation.gif" class="img-responsive pfolioelem"><br>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="surreal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+           <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="modal-body">
+                            <h2>Surreal</h2>
+                            <hr class="star-primary">
+                            <p>Image manipulation and composition</p>
+                            <hr class="pfolioelemdiv">
+                            <img src="portfolio/surreal/Orange Juice.jpg" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/surreal/Orange Juice.gif" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/surreal/Joey DubExp v2.jpg" class="img-responsive pfolioelem"><br>
+                            <img src="portfolio/surreal/Ultiplayer DubExp.jpg" class="img-responsive pfolioelem"><br>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/freelancer.min.js"></script>
+
+    <script>
+        var slideshows = document.getElementsByClassName("slideshow-container");
+        var slideIndex = [];
+
+        function initIndices() {
+            for (var i = 0; i < slideshows.length; i++) {
+                slideIndex[i] = 1;  
+            }
+
+            for (var i = 0; i < slideshows.length; i++) {
+                showSlides(i, slideIndex[i]);
+            }
+        }
+
+        function showSlides(s, n) {
+          var slides = slideshows[s].getElementsByClassName("mySlides");
+          if (n > slides.length) {slideIndex[s] = 1}    
+          if (n < 1) {slideIndex[s] = slides.length}
+          for (var i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";  
+          }
+          slides[slideIndex[s]-1].style.display = "block";
+        }
+
+        initIndices();
+
+        function prevSlide(butt) {
+            for (var i=0; i<slideshows.length; i++) {
+                prevs = slideshows[i].getElementsByClassName("prev");
+                for (var j=0; j<prevs.length; j++) {
+                    if (butt==prevs[j]) {
+                        slideIndex[i]-=1;
+                        showSlides(i, slideIndex[i]);
+                    }
+                }
+            }
+        }
+
+        function nextSlide(butt) {
+            for (var i=0; i<slideshows.length; i++) {
+                nexts = slideshows[i].getElementsByClassName("next");
+                for (var j=0; j<nexts.length; j++) {
+                    if (butt==nexts[j]) {
+                        slideIndex[i]+=1;
+                        showSlides(i, slideIndex[i]);
+                    }
+                }
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
