@@ -13,6 +13,7 @@ var middleButton;
 
 function setup() {
   var canvas = createCanvas(500, 500);
+  canvas.parent('sketch-holder');
   reset();
 }
 
