@@ -12,6 +12,7 @@ int updateTimer = 0;
 int genQuickest;
 int genFurthestCP;
 float genClosest;
+float lastCPDist = 0;
 
 void setup() {
   size(900, 600);
@@ -70,10 +71,12 @@ void drawTrack() {
   stroke(0);
   strokeWeight(60);
   line(pmouseX, pmouseY, mouseX, mouseY);
+  lastCPDist += dist(pmouseX, pmouseY, mouseX, mouseY);
   loadPixels();
-  if (checkpoints.size()==0 || dist(checkpoints.get(checkpoints.size()-1).x, checkpoints.get(checkpoints.size()-1).y, mouseX, mouseY)>150) {
+  if (checkpoints.size()==0 || lastCPDist>150) {
     PVector chkpnt = new PVector(mouseX, mouseY);
     checkpoints.add(chkpnt);
+    lastCPDist = 0;
   }
 }
 
